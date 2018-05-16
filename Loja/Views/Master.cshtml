@@ -1,0 +1,45 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@Umbraco.Field("title", recursive: true)</title>
+    <meta name="keywords" content="@(Model.Content.HasValue("keywords") ? Model.Content.GetProperty("keywords").DataValue.ToString() : uQuery.GetRootNode().ChildrenAsList.FirstOrDefault().GetProperty("keywords").Value.ToString())">
+    <meta name="description" content="@Umbraco.Field("description", recursive: true)">
+    <link rel="stylesheet" href="~/Content/materialize/css/materialize.min.css">
+    <script src="~/Scripts/materialize/materialize.js"></script>
+   
+</head>
+<body>
+
+    <img src="" />
+    <nav>
+        <div class="nav-wrapper  6d4c41 brown darken-1">
+            <a href="~/Views/Home.cshtml" class="brand-logo"><!--img src="~/"-->Imagem </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="Home.cshtml">Home</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+        @*@Html.Partial("Custom/Menu")*@
+
+        @RenderBody()
+
+        @*@Html.Partial("Custom/Footer")*@
+    </div>
+
+</body>
+</html>
