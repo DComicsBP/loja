@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Loja.Models
+
+
+
+
+
+<footer class="page-footer brown darken-1 ">
+
+    <div class="row">
+        @{
+        Html.RenderPartial("~/Views/Partials/ContactUs.cshtml", new ContactUsModel());
+
+        }
+
+        @{
+        // o et nodes by type pega tudo o que estiver contido dentro do nó home. Ver se posso pegar um getNode by types encadeado
+
+        /*  var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id).GetPropertyValue<IEnumerable<IPublishedContent>>("footer");
+
+          foreach (var con in cont)
+          {
+              var valueTitle = con.GetPropertyValue<string>("dTitle");
+              // pega o valor mesmo sendo o código em html e joga na tela
+              var valueDescription = con.GetPropertyValue("descriptionThings");
+
+              <h1>@valueTitle</h1>
+              @valueDescription
+          }
+
+      */}
+
+    </div>
+
+
+    <div class="footer-copyright">
+        <div class="container">
+            © 2014 Copyright Text
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>

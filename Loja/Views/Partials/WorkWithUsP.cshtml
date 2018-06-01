@@ -1,0 +1,76 @@
+﻿@inherits  UmbracoViewPage<Loja.Models.WorkWithUsModel>
+@using (Html.BeginUmbracoForm("SubmitForm", "WorkWithUs", FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+
+    <div id="trabalhe-conosco">
+
+
+        <div class="container">
+            <div class="row">
+                <div style="color: saddlebrown" class="workWithUs">
+
+                    <h2>Trabalhe conosco</h2>
+
+                </div>
+
+
+                <div class="input-field col s6">
+                    <br />
+
+                    @Html.TextBoxFor(m => m.Name, new { id = "name" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                    <label style="color:saddlebrown">Nome</label>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <br />
+
+                    @Html.TextBoxFor(m => m.Email, new { id = "email" })
+                    @Html.ValidationMessageFor(m => m.Email)
+
+                    <label style="color:saddlebrown">Email</label>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <br />
+                    <br />
+
+                    <input type="file" />
+
+                    <label style="color:saddlebrown">Currículo</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <br />
+                    <br />
+
+                    @Html.TextAreaFor(m => m.Description, new { rows = 170, columns = 80 })
+
+                    @Html.ValidationMessageFor(m => m.Description)
+                    <label style="color:saddlebrown">Breve Descrição de suas áreas de interesse</label>
+                </div>
+            </div>
+
+
+            <input type="submit" value="Submit" class="btn waves-effect waves-light" />
+            <br />
+            <br />
+
+        </div>
+    </div>
+}
+
+
+
