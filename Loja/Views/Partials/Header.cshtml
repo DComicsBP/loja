@@ -8,28 +8,20 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 
             @{
-                var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id).GetPropertyValue<IEnumerable<IPublishedContent>>("header");
-                
-                foreach (var con in cont)
-                {
-                    var title = con.GetPropertyValue<IEnumerable<IPublishedContent>>("links");
-                    foreach (var item in title)
-                    {
+                var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id);
+                var linksHeader = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("linksHeader");
 
-                        var i = item.GetPropertyValue<string>("title");
-                        var link = item.GetPropertyValue<IPublishedContent>("internalLinks").Url.ToString();
+                foreach (var item in linksHeader)
+                 {
+                         var i = item.GetPropertyValue<string>("title");
+                         var link = item.GetPropertyValue<IPublishedContent>("internalLinks").Url.ToString();
 
-                        if (i.Equals("Home")) { continue; }
-                        else
-                        {
-                            <li><a href="@link">@i </a></li>
-                        }
-
-
-                    }
-
-                }
-
+                         if (i.Equals("Home")) { continue; }
+                         else
+                         {
+                             <li><a href="@link">@i </a></li>
+                         }
+                 }
             }
 
         </ul>

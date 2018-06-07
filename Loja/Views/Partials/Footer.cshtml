@@ -7,28 +7,25 @@
 
 <footer class="page-footer brown darken-1 ">
 
+    @{
+        var h1 = Model.Content.GetPropertyValue<string>("titleFooter");
+
+
+    }
+
+    <h1> @h1</h1>
     <div class="row">
-        @{
-        Html.RenderPartial("~/Views/Partials/ContactUs.cshtml", new ContactUsModel());
+        
+            @if (Model.Content.Id != 1247)
+            {
+                Html.RenderPartial("~/Views/Partials/ContactUs.cshtml", new ContactUsModel());
+            }
+        
 
-        }
 
-        @{
-        // o et nodes by type pega tudo o que estiver contido dentro do nó home. Ver se posso pegar um getNode by types encadeado
+     
 
-        /*  var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id).GetPropertyValue<IEnumerable<IPublishedContent>>("footer");
-
-          foreach (var con in cont)
-          {
-              var valueTitle = con.GetPropertyValue<string>("dTitle");
-              // pega o valor mesmo sendo o código em html e joga na tela
-              var valueDescription = con.GetPropertyValue("descriptionThings");
-
-              <h1>@valueTitle</h1>
-              @valueDescription
-          }
-
-      */}
+       
 
     </div>
 

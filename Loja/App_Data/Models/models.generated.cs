@@ -19,82 +19,11 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "a096e52342a810af")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "326ee610ee641367")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Card Description</summary>
-	[PublishedContentModel("cardDescription")]
-	public partial class CardDescription : PublishedContentModel
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "cardDescription";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public CardDescription(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<CardDescription, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Description
-		///</summary>
-		[ImplementPropertyType("description")]
-		public string Description
-		{
-			get { return this.GetPropertyValue<string>("description"); }
-		}
-
-		///<summary>
-		/// Description Title
-		///</summary>
-		[ImplementPropertyType("descriptionTitle")]
-		public string DescriptionTitle
-		{
-			get { return this.GetPropertyValue<string>("descriptionTitle"); }
-		}
-
-		///<summary>
-		/// External link Description
-		///</summary>
-		[ImplementPropertyType("externalLinkDescription")]
-		public string ExternalLinkDescription
-		{
-			get { return this.GetPropertyValue<string>("externalLinkDescription"); }
-		}
-
-		///<summary>
-		/// Internal Link Description
-		///</summary>
-		[ImplementPropertyType("internalLinkDescription")]
-		public IPublishedContent InternalLinkDescription
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("internalLinkDescription"); }
-		}
-
-		///<summary>
-		/// Product Type
-		///</summary>
-		[ImplementPropertyType("productType")]
-		public IEnumerable<string> ProductType
-		{
-			get { return this.GetPropertyValue<IEnumerable<string>>("productType"); }
-		}
-	}
-
 	/// <summary>Main Text</summary>
 	[PublishedContentModel("mainText")]
 	public partial class MainText : PublishedContentModel
@@ -136,77 +65,6 @@ namespace Umbraco.Web.PublishedContentModels
 		public string TextTitle
 		{
 			get { return this.GetPropertyValue<string>("textTitle"); }
-		}
-	}
-
-	/// <summary>Images</summary>
-	[PublishedContentModel("images")]
-	public partial class Images : PublishedContentModel
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "images";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public Images(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Images, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Description Image
-		///</summary>
-		[ImplementPropertyType("descriptionImage")]
-		public string DescriptionImage
-		{
-			get { return this.GetPropertyValue<string>("descriptionImage"); }
-		}
-
-		///<summary>
-		/// External Link Image
-		///</summary>
-		[ImplementPropertyType("externalLinkImage")]
-		public string ExternalLinkImage
-		{
-			get { return this.GetPropertyValue<string>("externalLinkImage"); }
-		}
-
-		///<summary>
-		/// Image
-		///</summary>
-		[ImplementPropertyType("image")]
-		public IPublishedContent Image
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("image"); }
-		}
-
-		///<summary>
-		/// Internal Link Image
-		///</summary>
-		[ImplementPropertyType("internalLinkImage")]
-		public IPublishedContent InternalLinkImage
-		{
-			get { return this.GetPropertyValue<IPublishedContent>("internalLinkImage"); }
-		}
-
-		///<summary>
-		/// Title Image
-		///</summary>
-		[ImplementPropertyType("titleImage")]
-		public string TitleImage
-		{
-			get { return this.GetPropertyValue<string>("titleImage"); }
 		}
 	}
 
@@ -254,9 +112,20 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
+	// Mixin content Type 1206 with alias "header"
+	/// <summary>Header</summary>
+	public partial interface IHeader : IPublishedContent
+	{
+		/// <summary>Images - Header</summary>
+		IEnumerable<IPublishedContent> ImagesHeader { get; }
+
+		/// <summary>Links - Header</summary>
+		IEnumerable<IPublishedContent> LinksHeader { get; }
+	}
+
 	/// <summary>Header</summary>
 	[PublishedContentModel("header")]
-	public partial class Header : PublishedContentModel
+	public partial class Header : PublishedContentModel, IHeader
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "header";
@@ -280,27 +149,44 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Image
+		/// Images - Header
 		///</summary>
-		[ImplementPropertyType("image")]
-		public IEnumerable<IPublishedContent> Image
+		[ImplementPropertyType("imagesHeader")]
+		public IEnumerable<IPublishedContent> ImagesHeader
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("image"); }
+			get { return GetImagesHeader(this); }
 		}
 
+		/// <summary>Static getter for Images - Header</summary>
+		public static IEnumerable<IPublishedContent> GetImagesHeader(IHeader that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("imagesHeader"); }
+
 		///<summary>
-		/// Links
+		/// Links - Header
 		///</summary>
-		[ImplementPropertyType("links")]
-		public IEnumerable<IPublishedContent> Links
+		[ImplementPropertyType("linksHeader")]
+		public IEnumerable<IPublishedContent> LinksHeader
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("links"); }
+			get { return GetLinksHeader(this); }
 		}
+
+		/// <summary>Static getter for Links - Header</summary>
+		public static IEnumerable<IPublishedContent> GetLinksHeader(IHeader that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("linksHeader"); }
+	}
+
+	// Mixin content Type 1218 with alias "footer"
+	/// <summary>Footer</summary>
+	public partial interface IFooter : IPublishedContent
+	{
+		/// <summary>description Footer</summary>
+		IEnumerable<IPublishedContent> DescriptionFooter { get; }
+
+		/// <summary>Title Footer</summary>
+		string TitleFooter { get; }
 	}
 
 	/// <summary>Footer</summary>
 	[PublishedContentModel("footer")]
-	public partial class Footer : PublishedContentModel
+	public partial class Footer : PublishedContentModel, IFooter
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "footer";
@@ -329,8 +215,11 @@ namespace Umbraco.Web.PublishedContentModels
 		[ImplementPropertyType("descriptionFooter")]
 		public IEnumerable<IPublishedContent> DescriptionFooter
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("descriptionFooter"); }
+			get { return GetDescriptionFooter(this); }
 		}
+
+		/// <summary>Static getter for description Footer</summary>
+		public static IEnumerable<IPublishedContent> GetDescriptionFooter(IFooter that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("descriptionFooter"); }
 
 		///<summary>
 		/// Title Footer
@@ -338,8 +227,11 @@ namespace Umbraco.Web.PublishedContentModels
 		[ImplementPropertyType("titleFooter")]
 		public string TitleFooter
 		{
-			get { return this.GetPropertyValue<string>("titleFooter"); }
+			get { return GetTitleFooter(this); }
 		}
+
+		/// <summary>Static getter for Title Footer</summary>
+		public static string GetTitleFooter(IFooter that) { return that.GetPropertyValue<string>("titleFooter"); }
 	}
 
 	// Mixin content Type 1220 with alias "descriptions"
@@ -619,7 +511,7 @@ namespace Umbraco.Web.PublishedContentModels
 
 	/// <summary>Home</summary>
 	[PublishedContentModel("home")]
-	public partial class Home : Master, IDescriptions
+	public partial class Home : Master, IDescriptions, IFooter, IHeader
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "home";
@@ -643,15 +535,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Header
-		///</summary>
-		[ImplementPropertyType("header")]
-		public IEnumerable<IPublishedContent> Header
-		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("header"); }
-		}
-
-		///<summary>
 		/// Description Things
 		///</summary>
 		[ImplementPropertyType("descriptionThings")]
@@ -667,6 +550,42 @@ namespace Umbraco.Web.PublishedContentModels
 		public string DTitle
 		{
 			get { return Umbraco.Web.PublishedContentModels.Descriptions.GetDTitle(this); }
+		}
+
+		///<summary>
+		/// description Footer
+		///</summary>
+		[ImplementPropertyType("descriptionFooter")]
+		public IEnumerable<IPublishedContent> DescriptionFooter
+		{
+			get { return Umbraco.Web.PublishedContentModels.Footer.GetDescriptionFooter(this); }
+		}
+
+		///<summary>
+		/// Title Footer
+		///</summary>
+		[ImplementPropertyType("titleFooter")]
+		public string TitleFooter
+		{
+			get { return Umbraco.Web.PublishedContentModels.Footer.GetTitleFooter(this); }
+		}
+
+		///<summary>
+		/// Images - Header
+		///</summary>
+		[ImplementPropertyType("imagesHeader")]
+		public IEnumerable<IPublishedContent> ImagesHeader
+		{
+			get { return Umbraco.Web.PublishedContentModels.Header.GetImagesHeader(this); }
+		}
+
+		///<summary>
+		/// Links - Header
+		///</summary>
+		[ImplementPropertyType("linksHeader")]
+		public IEnumerable<IPublishedContent> LinksHeader
+		{
+			get { return Umbraco.Web.PublishedContentModels.Header.GetLinksHeader(this); }
 		}
 	}
 
@@ -691,32 +610,6 @@ namespace Umbraco.Web.PublishedContentModels
 #pragma warning restore 0109
 
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<TrabalheConosco, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-	}
-
-	/// <summary>Novidades</summary>
-	[PublishedContentModel("novidades")]
-	public partial class Novidades : Master
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "novidades";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public Novidades(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Novidades, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
@@ -748,44 +641,9 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
-	/// <summary>Products</summary>
-	[PublishedContentModel("products")]
-	public partial class Products : Master
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "products";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public Products(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Products, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-
-		///<summary>
-		/// Produt Description
-		///</summary>
-		[ImplementPropertyType("produtDescription")]
-		public IEnumerable<IPublishedContent> ProdutDescription
-		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("produtDescription"); }
-		}
-	}
-
 	/// <summary>Product Details</summary>
 	[PublishedContentModel("productDetails")]
-	public partial class ProductDetails : PublishedContentModel
+	public partial class ProductDetails : PublishedContentModel, INameItemList
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "productDetails";
@@ -809,12 +667,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Image
+		/// Image Product
 		///</summary>
-		[ImplementPropertyType("image")]
-		public IEnumerable<IPublishedContent> Image
+		[ImplementPropertyType("imageProduct")]
+		public IPublishedContent ImageProduct
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("image"); }
+			get { return this.GetPropertyValue<IPublishedContent>("imageProduct"); }
 		}
 
 		///<summary>
@@ -843,6 +701,15 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<string>("prodValue"); }
 		}
+
+		///<summary>
+		/// Item Name
+		///</summary>
+		[ImplementPropertyType("itemName")]
+		public string ItemName
+		{
+			get { return Umbraco.Web.PublishedContentModels.NameItemList.GetItemName(this); }
+		}
 	}
 
 	/// <summary>Loja Detatlhe</summary>
@@ -869,6 +736,206 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
+	}
+
+	/// <summary>Produtos</summary>
+	[PublishedContentModel("produtos")]
+	public partial class Produtos : Master
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "produtos";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Produtos(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Produtos, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Categories</summary>
+	[PublishedContentModel("categories")]
+	public partial class Categories : PublishedContentModel, IConteudo
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "categories";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Categories(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Categories, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	// Mixin content Type 1269 with alias "conteudo"
+	/// <summary>Conteudo</summary>
+	public partial interface IConteudo : IPublishedContent
+	{
+	}
+
+	/// <summary>Conteudo</summary>
+	[PublishedContentModel("conteudo")]
+	public partial class Conteudo : PublishedContentModel, IConteudo
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "conteudo";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Conteudo(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Conteudo, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Images</summary>
+	[PublishedContentModel("images")]
+	public partial class Images : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "images";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Images(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Images, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Image
+		///</summary>
+		[ImplementPropertyType("image")]
+		public IPublishedContent Image
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("image"); }
+		}
+	}
+
+	/// <summary>Produto</summary>
+	[PublishedContentModel("produto")]
+	public partial class Produto : Master
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "produto";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Produto(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Produto, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Cards
+		///</summary>
+		[ImplementPropertyType("cards")]
+		public IEnumerable<IPublishedContent> Cards
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("cards"); }
+		}
+	}
+
+	// Mixin content Type 1300 with alias "nameItemList"
+	/// <summary>Name Item List</summary>
+	public partial interface INameItemList : IPublishedContent
+	{
+		/// <summary>Item Name</summary>
+		string ItemName { get; }
+	}
+
+	/// <summary>Name Item List</summary>
+	[PublishedContentModel("nameItemList")]
+	public partial class NameItemList : PublishedContentModel, INameItemList
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "nameItemList";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public NameItemList(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<NameItemList, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Item Name
+		///</summary>
+		[ImplementPropertyType("itemName")]
+		public string ItemName
+		{
+			get { return GetItemName(this); }
+		}
+
+		/// <summary>Static getter for Item Name</summary>
+		public static string GetItemName(INameItemList that) { return that.GetPropertyValue<string>("itemName"); }
 	}
 
 	/// <summary>Folder</summary>

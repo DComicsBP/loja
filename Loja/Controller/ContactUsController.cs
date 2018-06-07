@@ -37,10 +37,11 @@ namespace Loja.Controller
 
             try
             {
-                MailMessage message = new MailMessage(model.Email, "dayonne.p@gmail.com");
-
-                message.Subject = string.Format("Enquiry from {0} {1}", model.Name, model.Email);
-                message.Body = model.Message;
+                MailMessage message = new MailMessage(model.Email, "dayonne.p@gmail.com")
+                {
+                    Subject = string.Format("Enquiry from {0} {1}", model.Name, model.Email),
+                    Body = model.Message
+                };
                 SmtpClient client = new System.Net.Mail.SmtpClient();
                 client.Host = "smtp.gmail.com";
                 client.EnableSsl = true;

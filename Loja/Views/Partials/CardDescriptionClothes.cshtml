@@ -1,192 +1,58 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Loja.Util
+
+@{
 
 
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
+    var products = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("cards");
 
 
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
+    foreach (var p in products)
+    {
+        if (Util.Card(p)!= null)
+        {
+            var name = p.GetPropertyValue<string>("prodName");
+            var description = p.GetPropertyValue<string>("prodDescription");
+            var value = p.GetPropertyValue<string>("prodValue");
+            var image = p.GetPropertyValue<IPublishedContent>("imageProduct");
+            var imageB = image.Url;
+        
 
 
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
+
+                <div class="row">
+                    <div class="col s6 m3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="@imageB" width="20" height="310"/>
+
+                            </div>
+                            <div class="card-content">
+                                <p>
+
+                                    <span class="card-title">@name</span>
 
 
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
+                                </p>
+                            </div>
+                            <div class="">
+                                <a>@description</a>
+                                <br />  
+                                <span id="value">
+                                    @value
+                               </span>
+                            </div>
 
-
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-                <span class="card-title">Card Title</span>
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col s12 m7">
-        <div class="card">
-            <div class="card-image">
-                <img src="images/sample-1.jpg">
-                <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-                <p>
-                    I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.
-                </p>
-            </div>
-            <div class="card-action">
-                <a href="#">This is a link</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col s12 m6">
-        <div class="card ">
-
-
-            <div class="content-product">
-                <div style="background: url('/Media/1001/sundarpichai.jpeg') no-repeat" class="card">
-
+                        </div>
+                    </div>
                 </div>
 
-                <h5>Calça Jeans</h5>
-                <h6>Valor a prestacao</h6><h4>Valor Parcela</h4>
-                <h6>valor total</h6>
-            </div>
+        }
 
-        </div>
-    </div>
-</div>
+    }
+}
+

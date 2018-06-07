@@ -1,12 +1,17 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+   
 @{
     Layout = "Master.cshtml";
 }
 
                 @{
-                    var titleHome = Model.Content.GetPropertyValue<string>("dTitle");
 
-                    var descriptionHome = Model.Content.GetPropertyValue<IHtmlString>("descriptionThings"); 
+
+                    <h1></h1>
+
+                    var titleHome = Model.Content.GetPropertyValue<string>("dTitle");
+                    
+                    var descriptionHome = Model.Content.GetPropertyValue<IHtmlString>("descriptionThings");
 
                     <h1>@titleHome</h1>
 
