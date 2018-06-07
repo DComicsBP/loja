@@ -2,41 +2,29 @@
 @using Loja.Util
 
 @{
-
-
-
-
     var products = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("cards");
-
-
-
 
     foreach (var p in products)
     {
-        if (Util.Card(p)!= null)
+        var card = Util.Card(p);
+
+        if (card != null)
         {
-            var name = p.GetPropertyValue<string>("prodName");
-            var description = p.GetPropertyValue<string>("prodDescription");
-            var value = p.GetPropertyValue<string>("prodValue");
-            var image = p.GetPropertyValue<IPublishedContent>("imageProduct");
-            var imageB = image.Url;
-        
-
-
+            var name = card.Name;
+            var description = card.Description;
+            var value = card.Value;
+            var image = card.Image;
+            var src = image.Url;
 
                 <div class="row">
                     <div class="col s6 m3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="@imageB" width="20" height="310"/>
-
+                                <img src="@src" width="20" height="310"/>
                             </div>
                             <div class="card-content">
                                 <p>
-
                                     <span class="card-title">@name</span>
-
-
                                 </p>
                             </div>
                             <div class="">
@@ -50,7 +38,6 @@
                         </div>
                     </div>
                 </div>
-
         }
 
     }

@@ -938,12 +938,6 @@ umbraco.businesslogic.UsersApplicationDefinition, businesslogic, Version=1.0.668
 umbraco.businesslogic.MembersApplicationDefinition, businesslogic, Version=1.0.6684.15729, Culture=neutral, PublicKeyToken=null
 umbraco.businesslogic.TranslationApplicationDefinition, businesslogic, Version=1.0.6684.15729, Culture=neutral, PublicKeyToken=null
 
-Umbraco.Web.Editors.IEditorValidator
-
-Umbraco.ModelsBuilder.Validation.ContentTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-Umbraco.ModelsBuilder.Validation.MediaTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-Umbraco.ModelsBuilder.Validation.MemberTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
-
 umbraco.interfaces.ICacheRefresher
 
 Umbraco.Web.Cache.ApplicationCacheRefresher, umbraco, Version=1.0.6684.15731, Culture=neutral, PublicKeyToken=null
@@ -987,4 +981,10 @@ Umbraco.Web.HealthCheck.Checks.Config.TrySkipIisCustomErrorsCheck, umbraco, Vers
 Umbraco.Web.HealthCheck.Checks.Config.CustomErrorsCheck, umbraco, Version=1.0.6684.15731, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.HealthCheck.Checks.Config.TraceCheck, umbraco, Version=1.0.6684.15731, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.HealthCheck.Checks.Config.CompilationDebugCheck, umbraco, Version=1.0.6684.15731, Culture=neutral, PublicKeyToken=null
+
+Umbraco.Web.Editors.IEditorValidator
+
+Umbraco.ModelsBuilder.Validation.ContentTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
+Umbraco.ModelsBuilder.Validation.MediaTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
+Umbraco.ModelsBuilder.Validation.MemberTypeModelValidator, Umbraco.ModelsBuilder, Version=3.0.10.102, Culture=neutral, PublicKeyToken=null
 

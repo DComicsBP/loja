@@ -33,7 +33,7 @@ namespace Loja.Util
                 Name = cont.GetPropertyValue<string>("prodName"),
                 Description = cont.GetPropertyValue<string>("prodDescription"),
                 Value = cont.GetPropertyValue<string>("prodValue"),
-                Image = cont.GetPropertyValue<string>("imageProduct")
+                Image = cont.GetPropertyValue<IPublishedContent>("imageProduct")
             };
         }
 

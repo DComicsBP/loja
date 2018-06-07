@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Umbraco.Core.Models;
 
 namespace Loja.Models
 {
@@ -11,6 +12,6 @@ namespace Loja.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Value { get; set; }
-        public string Image { get; set; }
+        public IPublishedContent Image { get; set; }
     }
 }

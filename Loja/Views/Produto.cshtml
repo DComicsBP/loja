@@ -3,16 +3,12 @@
     Layout = "Master.cshtml";
 }
 
-
-
 @{
     var title = Model.Content.GetPropertyValue<string>("title");
-
 
 
 }
 
 <h1>@title</h1>
-
 
 @Html.Partial("Partials/CardDescriptionClothes")
