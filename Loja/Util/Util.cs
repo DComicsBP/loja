@@ -22,22 +22,20 @@ namespace Loja.Util
             else return FindHome(node.Parent);
         }
 
-       
-
         public static CardModel Card(IPublishedContent cont)
         {
-         
+
             return new CardModel
             {
                 ID = cont.Id,
                 Name = cont.GetPropertyValue<string>("prodName"),
                 Description = cont.GetPropertyValue<string>("prodDescription"),
                 Value = cont.GetPropertyValue<string>("prodValue"),
-                Image = cont.GetPropertyValue<IPublishedContent>("imageProduct")
+                Image = cont.GetPropertyValue<IPublishedContent>("imageProduct"),
+                Category = cont.GetPropertyValue("category").ToString() 
             };
         }
 
-      
-
+     
     }
 }
