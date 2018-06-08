@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e31e3afb4bf5085e")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "da3d28a166a9de7a")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -710,15 +710,6 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<string>("prodValue"); }
 		}
-
-		///<summary>
-		/// Item Name
-		///</summary>
-		[ImplementPropertyType("itemName")]
-		public string ItemName
-		{
-			get { return Umbraco.Web.PublishedContentModels.NameItemList.GetItemName(this); }
-		}
 	}
 
 	/// <summary>Loja Detatlhe</summary>
@@ -905,8 +896,6 @@ namespace Umbraco.Web.PublishedContentModels
 	/// <summary>Name Item List</summary>
 	public partial interface INameItemList : IPublishedContent
 	{
-		/// <summary>Item Name</summary>
-		string ItemName { get; }
 	}
 
 	/// <summary>Name Item List</summary>
@@ -933,18 +922,6 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
-
-		///<summary>
-		/// Item Name
-		///</summary>
-		[ImplementPropertyType("itemName")]
-		public string ItemName
-		{
-			get { return GetItemName(this); }
-		}
-
-		/// <summary>Static getter for Item Name</summary>
-		public static string GetItemName(INameItemList that) { return that.GetPropertyValue<string>("itemName"); }
 	}
 
 	/// <summary>Folder</summary>
