@@ -46,16 +46,7 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="input-field col s6">
-                    <br />
-                    <br />
-
-                    <input type="file" />
-
-                    <label style="color:saddlebrown">Currículo</label>
-                </div>
-            </div>
+        
 
             <div class="row">
                 <div class="input-field col s6">
@@ -80,3 +71,15 @@
 
 
 
+<script>
+    function uploadFile() {
+        
+
+        var formData = new FormData();
+        var totalFiles = document.getElementById("imageFile").files.length;
+        for (var i = 0; i < totalFiles; i++) {
+            var file = document.getElementById("imageFile").files[i];
+
+            formData.append("imageFile", file);
+        }
+</script>

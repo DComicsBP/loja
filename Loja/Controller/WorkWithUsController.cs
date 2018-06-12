@@ -2,7 +2,10 @@
 using System;
 using System.Web.Mvc; 
 using Umbraco.Web.Mvc;
-using System.Net.Mail; 
+using System.Net.Mail;
+using System.Net.Mime;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Loja.Controller
 {
@@ -37,15 +40,17 @@ namespace Loja.Controller
             try
             {
                 MailMessage message = new MailMessage(model.Email, "dayonne.p@gmail.com");
+                List<Stream> streams = new List<Stream>();
 
-                message.Subject = string.Format("Enquiry from {0} {1}", model.Name, model.Email, model.File);
-                message.Body = model.File;
+
+                message.Subject = string.Format("Enquiry from {0} {1}", model.Name, model.Email, model.Description);
+                message.Body = model.Description; 
                 SmtpClient client = new System.Net.Mail.SmtpClient();
                 mail.Sender = new System.Net.Mail.MailAddress(model.Email, model.Name);
                 mail.From = new MailAddress(model.Email, model.Name);
                 mail.To.Add(new MailAddress("dayonne.p@gmail.com", "Daione"));
                 mail.Subject = "Contato";
-                mail.Body = " Mensagem do site:<br/> Nome:  " + model.Name + "<br/> Email : " + model.Email + " <br/> Arquivo : " + model.File + " <br/> Descrição" + model.Description;
+                mail.Body = " Mensagem do site:<br/> Nome:  " + model.Name + "<br/> Email : " + model.Email + " <br/>  Descrição" + model.Description;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
                 client.Send(mail);

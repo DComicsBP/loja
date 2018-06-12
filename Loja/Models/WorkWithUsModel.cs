@@ -12,7 +12,6 @@ namespace Loja.Models
         public string Name { get; set; }
         [EmailAddress(ErrorMessage ="Você não colocou um email válido!")]
         public string Email { get; set; }
-        public string File { get; set; }
         public DateTime Date { get; set; }
         public string Description{ get; set; }
         
