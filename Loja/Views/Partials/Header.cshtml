@@ -17,10 +17,7 @@
                          var link = item.GetPropertyValue<IPublishedContent>("internalLinks").Url.ToString();
 
                          if (i.Equals("Home")) { continue; }
-                         else
-                         {
-                             <li><a href="@link">@i </a></li>
-                         }
+                         else { <li><a href="@link">@i </a></li> }
                  }
             }
 
