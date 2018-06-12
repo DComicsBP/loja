@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "da3d28a166a9de7a")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "acafceaf6c6f7a1b")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
 // FILE: models.generated.cs
@@ -683,12 +683,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Category
+		/// categories
 		///</summary>
-		[ImplementPropertyType("category")]
-		public IEnumerable<IPublishedContent> Category
+		[ImplementPropertyType("categories")]
+		public IEnumerable<IPublishedContent> Categories
 		{
-			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("category"); }
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("categories"); }
 		}
 
 		///<summary>

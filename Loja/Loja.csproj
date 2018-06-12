@@ -471,6 +471,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\ProductController.cs" />
     <Compile Include="Controller\WorkWithUsController.cs" />
     <Compile Include="Controller\ContactUsController.cs" />
     <Compile Include="Controller\HomeController.cs" />
@@ -493,9 +494,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ADO\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Main\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

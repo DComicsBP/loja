@@ -2,21 +2,36 @@
 @using Loja.Util
 
 @{
-            var products = Model.Content.GetPropertyValue<List<IPublishedContent>>("cards");
 
-            foreach (var p in products)
+    <input type="text" id="search-clothes"  class="s6"/>
+    <input type="button" value="Busque" />
+    var products = Model.Content.GetPropertyValue<List<IPublishedContent>>("cards");
+   
+    foreach (var p in products)
+    {
+
+
+        var card = Util.Card(p);
+        var c = Umbraco.TypedContent(card.Categories);
+
+
+        if (card != null)
+        {
+            var name = card.Name;
+            var description = card.Description;
+            var value = card.Value;
+            var image = card.Image;
+            var src = image.Url;
+
+            var categories = card.Categories;
+            foreach(var cat in categories)
             {
-                var teste =;
+                var categoria = cat.Id;
 
-                var card = Util.Card(p); 
-                if (card != null)
-                {
 
-                    var name = card.Name;
-                    var description = card.Description;
-                    var value = card.Value;
-                    var image = card.Image;
-                    var src = image.Url;
+            }
+
+
 
                 <div class="row">
                     <div class="col s6 m3">
@@ -43,6 +58,6 @@
 
          }
 
-}
+    }
 }
 

@@ -32,10 +32,38 @@ namespace Loja.Util
                 Description = cont.GetPropertyValue<string>("prodDescription"),
                 Value = cont.GetPropertyValue<string>("prodValue"),
                 Image = cont.GetPropertyValue<IPublishedContent>("imageProduct"),
-                Category = cont.GetPropertyValue("category").ToString() 
+                Categories = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")
             };
         }
 
-     
+
+        public static int[] GetCategoriesID(IPublishedProperty Property)
+        {
+            return Property.GetValue<List<IPublishedContent>>().Select(x => x.Id).ToArray();
+        }
+
+
+        public static IPublishedContent FindParent(IPublishedContent Node)
+        {
+            if (Node == null)
+            {
+                return null;
+            }
+
+            if (PagesContentTypes.Contains(Node.DocumentTypeAlias))
+                return Node;
+            else
+                return FindParent(Node.Parent);
+        }
+
+        public static IEnumerable<string> PagesContentTypes
+        {
+            get
+            {
+                return new[] { "home", "produto", "lojas", "trabalheConosco" };
+            }
+        }
+
+
     }
 }

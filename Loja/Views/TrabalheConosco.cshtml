@@ -4,6 +4,10 @@
 @{
     Layout = "Master.cshtml";
 }
+@{
+    var Page = Loja.Util.Util.FindParent(Model.Content);
+
+}
 <div style="position: relative; left:150px; color: saddlebrown" class="workWithUs">
 
 
@@ -15,4 +19,4 @@
     }
 
 
-    </div>
+</div>

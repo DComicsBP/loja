@@ -1,7 +1,13 @@
 ﻿@inherits  UmbracoViewPage<Loja.Models.WorkWithUsModel>
+@{
+    
+
+}   
+
 @using (Html.BeginUmbracoForm("SubmitForm", "WorkWithUs", FormMethod.Post))
 
 {
+
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
