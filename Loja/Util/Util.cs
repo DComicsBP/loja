@@ -37,9 +37,9 @@ namespace Loja.Util
         }
 
 
-        public static int[] GetCategoriesID(IPublishedProperty Property)
+        public static string[] GetCategoriesID(IPublishedProperty Property)
         {
-            return Property.GetValue<List<IPublishedContent>>().Select(x => x.Id).ToArray();
+            return Property.GetValue<List<IPublishedContent>>().Select(x => x.Name).ToArray();
         }
 
 

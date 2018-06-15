@@ -3,17 +3,18 @@
 
 @{
 
-    <input type="text" id="search-clothes"  class="s6"/>
-    <input type="button" value="Busque" />
+    
     var products = Model.Content.GetPropertyValue<List<IPublishedContent>>("cards");
-   
+    string[] listCategories;
+    List<string> allCategories = new List<string>();
+    int i = 0;
+
+
     foreach (var p in products)
     {
 
 
         var card = Util.Card(p);
-        var c = Umbraco.TypedContent(card.Categories);
-
 
         if (card != null)
         {
@@ -23,41 +24,66 @@
             var image = card.Image;
             var src = image.Url;
 
-            var categories = card.Categories;
-            foreach(var cat in categories)
+            var categories = p.GetProperty("categories");
+
+            listCategories = Util.GetCategoriesID(categories);
+
+            foreach (var category in listCategories)
             {
-                var categoria = cat.Id;
-
-
+                allCategories.Add(category);
             }
 
+        }
+    }
+    allCategories = allCategories.Distinct().ToList();
+    var b = allCategories.Distinct().ToArray();
+    foreach (var dist in b)
+    {
+        <a class="waves-effect waves-light btn" value="">@dist</a>
+    }
 
 
-                <div class="row">
-                    <div class="col s6 m3">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="@src" width="20" height="310" />
-                            </div>
-                            <div class="card-content">
-                                <p>
-                                    <span class="card-title">@name</span>
-                                </p>
-                            </div>
-                            <div class="">
-                                <a>@description</a>
-                                <br />
-                                <span id="value">
-                                    @value
-                                </span>
-                            </div>
+    foreach (var p in products)
+    {
 
+
+        var card = Util.Card(p);
+
+        if (card != null)
+        {
+            var name = card.Name;
+            var description = card.Description;
+            var value = card.Value;
+            var image = card.Image;
+            var src = image.Url;
+
+            var categories = p.GetProperty("categories");
+
+            <div class="row">
+                <div class="col s6 m3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="@src" width="20" height="310" />
                         </div>
+                        <div class="card-content">
+                            <p>
+                                <span class="card-title">@name</span>
+                            </p>
+                        </div>
+                        <div class="">
+                            <a>@description</a>
+                            <br />
+                            <span id="value">
+                                @value
+                            </span>
+                        </div>
+
                     </div>
                 </div>
+            </div>
 
-         }
-
+        }
     }
-}
 
+
+}
