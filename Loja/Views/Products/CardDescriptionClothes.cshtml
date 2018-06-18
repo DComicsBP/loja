@@ -1,0 +1,87 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Loja.Util
+@using Loja.Models
+
+
+}
+
+<div class="row">
+
+    @{
+        List<IPublishedContent> ProductList = new List<IPublishedContent>();
+        List<Category> CategoryList = new List<Category>();
+
+
+
+
+        foreach (var Node in Model.Content.GetPropertyValue<List<IPublishedContent>>(""))
+        {
+            var card = Loja.Util.Util.Card(Node);
+
+            if (card != null)
+            {
+                if (card.CategoryList != null)
+                {
+                    foreach (var cat in card.CategoryList)
+                    {
+
+
+                        CategoryList.Add(cat);
+                    }
+                }
+            }
+            ProductList.Add(Node);
+            var name = card.Name;
+            var description = card.Description;
+            var value = card.Value;
+            var imageProduct = card.Image;
+
+
+
+            <div class="col s3">
+
+                <div class="card">
+                    <div class="card-image">
+                        <img src="@imageProduct" width="20" height="310" />
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            <span class="card-title">@name</span>
+                        </p>
+                    </div>
+                    <div class="">
+                        <a>@description</a>
+                        <br />
+                        <span id="value">
+                            @value
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        }
+
+
+
+
+    }
+
+    @{
+        foreach (var cat in CategoryList)
+        {
+            <a href="@Umbraco.NiceUrl(cat.ID)" class="waves-effect waves-light btn-large">@cat.Name</a>
+        }
+
+
+    }
+
+
+
+</div>
+
+
+
+

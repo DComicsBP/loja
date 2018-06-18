@@ -24,6 +24,7 @@ namespace Loja.Util
 
         public static CardModel Card(IPublishedContent cont)
         {
+            var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
 
             return new CardModel
             {
@@ -31,15 +32,25 @@ namespace Loja.Util
                 Name = cont.GetPropertyValue<string>("prodName"),
                 Description = cont.GetPropertyValue<string>("prodDescription"),
                 Value = cont.GetPropertyValue<string>("prodValue"),
-                Image = cont.GetPropertyValue<IPublishedContent>("imageProduct"),
-                Categories = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")
+                Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("imageProduct")).Url,
+                CategoryList = GetCategoriesName(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")).ToList()
             };
         }
 
 
-        public static string[] GetCategoriesID(IPublishedProperty Property)
+        public static List<Category> GetCategoriesName(IEnumerable<IPublishedContent> content)
         {
-            return Property.GetValue<List<IPublishedContent>>().Select(x => x.Name).ToArray();
+            List<Category> categoryList = new List<Category>(); 
+
+            foreach(var cat in content)
+            {
+                Category c = new Category();
+                c.ID = cat.Id;
+                c.Name = cat.Name;
+                categoryList.Add(c);
+                
+            }
+            return categoryList;
         }
 
 

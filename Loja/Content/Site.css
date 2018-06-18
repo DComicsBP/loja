@@ -32,3 +32,9 @@ h3{
     color: red !important;
     font-family: Arial, Helvetica, sans-serif; 
 }
+
+.center-cols > .col {
+    float: none !inportant; /* disable the float */
+    display: inline-block !inportant; /* make blocks inline-block */
+    text-align: initial !inportant; /* restore text-align to default */
+}

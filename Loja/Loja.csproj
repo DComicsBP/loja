@@ -455,9 +455,10 @@
     <Content Include="Views\Partials\ErrorView.cshtml" />
     <Content Include="Views\Partials\LojaDetatlhe.cshtml" />
     <Content Include="Views\Partials\WorkWithUsP.cshtml" />
-    <Content Include="Views\Partials\CardDescriptionClothes.cshtml" />
     <Content Include="Views\LojaDetatlhe.cshtml" />
     <Content Include="Views\Produto.cshtml" />
+    <Content Include="Views\Products\CardDescriptionClothes.cshtml" />
+    <Content Include="Views\Categories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -481,6 +482,7 @@
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Forms.cs" />
+    <Compile Include="Util\MyStartupHandler.cs" />
     <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
