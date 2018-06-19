@@ -24,17 +24,29 @@ namespace Loja.Util
 
         public static CardModel Card(IPublishedContent cont)
         {
+            CardModel cardModel = new CardModel(); 
             var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
+          
+         
 
-            return new CardModel
-            {
-                ID = cont.Id,
-                Name = cont.GetPropertyValue<string>("prodName"),
-                Description = cont.GetPropertyValue<string>("prodDescription"),
-                Value = cont.GetPropertyValue<string>("prodValue"),
-                Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("imageProduct")).Url,
-                CategoryList = GetCategoriesName(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")).ToList()
-            };
+                cardModel.ID = cont.Id;
+                cardModel.Name = cont.GetPropertyValue<string>("prodName");
+                cardModel.Description = cont.GetPropertyValue<string>("prodDescription");
+                cardModel.Value = cont.GetPropertyValue<string>("prodValue");
+                if(cont.GetPropertyValue<int>("imageProduct") !=  0)
+                {
+                    cardModel.Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("imageProduct")).Url;
+                }
+                if(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories") != null)
+                {
+                     cardModel.CategoryList = GetCategoriesName(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")).ToList();
+
+                }
+
+
+
+
+            return cardModel;
         }
 
 
@@ -52,6 +64,24 @@ namespace Loja.Util
             }
             return categoryList;
         }
+
+        public static Category GetCategoryName(int id)
+        {
+            var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
+
+
+            Category categoria = new Category
+            {
+                ID = id,
+                Name = umbracoHelper.TypedContent(id).Name
+            }; 
+
+
+        
+            return categoria; 
+
+        }
+
 
 
         public static IPublishedContent FindParent(IPublishedContent Node)

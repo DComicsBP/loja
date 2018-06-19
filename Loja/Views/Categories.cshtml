@@ -1,15 +1,76 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
-    
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 
 @{
     Layout = "Master.cshtml";
 }
 
+@{
 
-<div class="row">
+    var Page = Loja.Util.Util.FindParent(Model.Content);
 
-   
+}
+
+<div class="row position-categories">
+    <div class="container">
+        @Html.Partial("Products/CardCategories")
+    </div>
 </div>
 
+<div class="row content-cards" >
 
+    @{
+        var cont = Model.Content.Id;
+        List<IPublishedContent> ProductList = new List<IPublishedContent>();
+        var umbracoPage = Umbraco.Content(cont);
+        var products = umbracoPage.Children;
+
+
+
+
+
+        foreach (var Node in products)
+        {
+            var card = Loja.Util.Util.Card(Node);
+
+
+            ProductList.Add(Node);
+            var name = card.Name;
+            var description = card.Description;
+            var value = card.Value;
+            var imageProduct = card.Image;
+
+            <div class="col s3">
+
+                <div class="card">
+                    <div class="card-image">
+                        @{
+                            if (imageProduct != null)
+                            {
+                                <img src="@imageProduct" width="20" height="310" />
+
+                            }
+                        }
+                    </div>
+                    <div class="card-content">
+                        <p>
+                            <span class="card-title">@name</span>
+                        </p>
+                    </div>
+                    <div class="">
+                        <a>@description</a>
+                        <br />
+                        <span id="value">
+                            @value
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+                            }
+
+    }
+
+</div>
 

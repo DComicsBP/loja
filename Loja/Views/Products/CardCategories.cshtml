@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<br>
+<br>
+
+<div>
+
+
+    @{
+        List<Loja.Models.Category> CategoryList = new List<Loja.Models.Category>();
+
+
+        var contProducts = Umbraco.Content(1292);
+
+
+        foreach (var Node in contProducts.Children)
+        {
+            if (Node != null)
+            {
+                var contNode = Umbraco.Content(Node.Id);
+                int teste = Node.Id;
+                var catego = Loja.Util.Util.GetCategoryName(teste);
+                CategoryList.Add(catego);
+            }
+
+        }
+
+        foreach (var cate in CategoryList)
+        {
+
+            <a href="@Umbraco.NiceUrl(cate.ID)" class="waves-effect waves-light btn-large">@cate.Name</a>
+        }
+    }
+</div>
+
+

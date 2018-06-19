@@ -459,6 +459,8 @@
     <Content Include="Views\Produto.cshtml" />
     <Content Include="Views\Products\CardDescriptionClothes.cshtml" />
     <Content Include="Views\Categories.cshtml" />
+    <Content Include="Views\Produtos.cshtml" />
+    <Content Include="Views\Products\CardCategories.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

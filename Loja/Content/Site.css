@@ -37,4 +37,6 @@ h3{
     float: none !inportant; /* disable the float */
     display: inline-block !inportant; /* make blocks inline-block */
     text-align: initial !inportant; /* restore text-align to default */
+
 }
+
