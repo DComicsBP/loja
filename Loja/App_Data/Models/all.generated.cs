@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "acafceaf6c6f7a1b")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "28eb792999aee09d")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 
 // FILE: models.generated.cs
@@ -728,16 +728,16 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
-	/// <summary>Loja Detatlhe</summary>
-	[PublishedContentModel("lojaDetatlhe")]
-	public partial class LojaDetatlhe : Lojas
+	/// <summary>Loja Detatlhe Fisica</summary>
+	[PublishedContentModel("lojaDetatlheFisica")]
+	public partial class LojaDetatlheFisica : Lojas, ICardComonStore, IExternalLinks, IGeolocationPoint
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "lojaDetatlhe";
+		public new const string ModelTypeAlias = "lojaDetatlheFisica";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public LojaDetatlhe(IPublishedContent content)
+		public LojaDetatlheFisica(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -748,9 +748,126 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<LojaDetatlhe, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<LojaDetatlheFisica, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// External Links 2
+		///</summary>
+		[ImplementPropertyType("externalLinks2")]
+		public IEnumerable<string> ExternalLinks2
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetExternalLinks2(this); }
+		}
+
+		///<summary>
+		/// Name Store
+		///</summary>
+		[ImplementPropertyType("nameStore")]
+		public string NameStore
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetNameStore(this); }
+		}
+
+		///<summary>
+		/// Store Description
+		///</summary>
+		[ImplementPropertyType("storeDescription")]
+		public string StoreDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreDescription(this); }
+		}
+
+		///<summary>
+		/// Store Director
+		///</summary>
+		[ImplementPropertyType("storeDirector")]
+		public string StoreDirector
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreDirector(this); }
+		}
+
+		///<summary>
+		/// Store Manager
+		///</summary>
+		[ImplementPropertyType("storeManager")]
+		public string StoreManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreManager(this); }
+		}
+
+		///<summary>
+		/// Contact Manager
+		///</summary>
+		[ImplementPropertyType("contactManager")]
+		public string ContactManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetContactManager(this); }
+		}
+
+		///<summary>
+		/// Logo Store
+		///</summary>
+		[ImplementPropertyType("logoStore")]
+		public IPublishedContent LogoStore
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetLogoStore(this); }
+		}
+
+		///<summary>
+		/// Name Manager
+		///</summary>
+		[ImplementPropertyType("nameManager")]
+		public string NameManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetNameManager(this); }
+		}
+
+		///<summary>
+		/// Page's Name
+		///</summary>
+		[ImplementPropertyType("pagesName")]
+		public string PagesName
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetPagesName(this); }
+		}
+
+		///<summary>
+		/// Page's Url
+		///</summary>
+		[ImplementPropertyType("pagesUrl")]
+		public string PagesUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetPagesUrl(this); }
+		}
+
+		///<summary>
+		/// Photo Manager
+		///</summary>
+		[ImplementPropertyType("photoManager")]
+		public IPublishedContent PhotoManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetPhotoManager(this); }
+		}
+
+		///<summary>
+		/// X point
+		///</summary>
+		[ImplementPropertyType("xPoint")]
+		public string XPoint
+		{
+			get { return Umbraco.Web.PublishedContentModels.GeolocationPoint.GetXPoint(this); }
+		}
+
+		///<summary>
+		/// Y Point
+		///</summary>
+		[ImplementPropertyType("yPoint")]
+		public string YPoint
+		{
+			get { return Umbraco.Web.PublishedContentModels.GeolocationPoint.GetYPoint(this); }
 		}
 	}
 
@@ -937,6 +1054,639 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<NameItemList, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Fisical Store Card</summary>
+	[PublishedContentModel("fisicalStoreCard")]
+	public partial class FisicalStoreCard : PublishedContentModel, ICardComonStore, IGeolocationPoint
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "fisicalStoreCard";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public FisicalStoreCard(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<FisicalStoreCard, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// External Links 2
+		///</summary>
+		[ImplementPropertyType("externalLinks2")]
+		public IEnumerable<string> ExternalLinks2
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetExternalLinks2(this); }
+		}
+
+		///<summary>
+		/// Name Store
+		///</summary>
+		[ImplementPropertyType("nameStore")]
+		public string NameStore
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetNameStore(this); }
+		}
+
+		///<summary>
+		/// Store Description
+		///</summary>
+		[ImplementPropertyType("storeDescription")]
+		public string StoreDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreDescription(this); }
+		}
+
+		///<summary>
+		/// Store Director
+		///</summary>
+		[ImplementPropertyType("storeDirector")]
+		public string StoreDirector
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreDirector(this); }
+		}
+
+		///<summary>
+		/// Store Manager
+		///</summary>
+		[ImplementPropertyType("storeManager")]
+		public string StoreManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreManager(this); }
+		}
+
+		///<summary>
+		/// X point
+		///</summary>
+		[ImplementPropertyType("xPoint")]
+		public string XPoint
+		{
+			get { return Umbraco.Web.PublishedContentModels.GeolocationPoint.GetXPoint(this); }
+		}
+
+		///<summary>
+		/// Y Point
+		///</summary>
+		[ImplementPropertyType("yPoint")]
+		public string YPoint
+		{
+			get { return Umbraco.Web.PublishedContentModels.GeolocationPoint.GetYPoint(this); }
+		}
+	}
+
+	// Mixin content Type 1346 with alias "geolocationPoint"
+	/// <summary>Geolocation Point</summary>
+	public partial interface IGeolocationPoint : IPublishedContent
+	{
+		/// <summary>X point</summary>
+		string XPoint { get; }
+
+		/// <summary>Y Point</summary>
+		string YPoint { get; }
+	}
+
+	/// <summary>Geolocation Point</summary>
+	[PublishedContentModel("geolocationPoint")]
+	public partial class GeolocationPoint : PublishedContentModel, IGeolocationPoint
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "geolocationPoint";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public GeolocationPoint(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<GeolocationPoint, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// X point
+		///</summary>
+		[ImplementPropertyType("xPoint")]
+		public string XPoint
+		{
+			get { return GetXPoint(this); }
+		}
+
+		/// <summary>Static getter for X point</summary>
+		public static string GetXPoint(IGeolocationPoint that) { return that.GetPropertyValue<string>("xPoint"); }
+
+		///<summary>
+		/// Y Point
+		///</summary>
+		[ImplementPropertyType("yPoint")]
+		public string YPoint
+		{
+			get { return GetYPoint(this); }
+		}
+
+		/// <summary>Static getter for Y Point</summary>
+		public static string GetYPoint(IGeolocationPoint that) { return that.GetPropertyValue<string>("yPoint"); }
+	}
+
+	// Mixin content Type 1353 with alias "externalLinks"
+	/// <summary>External Links</summary>
+	public partial interface IExternalLinks : IPublishedContent
+	{
+		/// <summary>Contact Manager</summary>
+		string ContactManager { get; }
+
+		/// <summary>Logo Store</summary>
+		IPublishedContent LogoStore { get; }
+
+		/// <summary>Name Manager</summary>
+		string NameManager { get; }
+
+		/// <summary>Page's Name</summary>
+		string PagesName { get; }
+
+		/// <summary>Page's Url</summary>
+		string PagesUrl { get; }
+
+		/// <summary>Photo Manager</summary>
+		IPublishedContent PhotoManager { get; }
+	}
+
+	/// <summary>External Links</summary>
+	[PublishedContentModel("externalLinks")]
+	public partial class ExternalLinks : PublishedContentModel, IExternalLinks
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "externalLinks";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public ExternalLinks(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ExternalLinks, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Contact Manager
+		///</summary>
+		[ImplementPropertyType("contactManager")]
+		public string ContactManager
+		{
+			get { return GetContactManager(this); }
+		}
+
+		/// <summary>Static getter for Contact Manager</summary>
+		public static string GetContactManager(IExternalLinks that) { return that.GetPropertyValue<string>("contactManager"); }
+
+		///<summary>
+		/// Logo Store
+		///</summary>
+		[ImplementPropertyType("logoStore")]
+		public IPublishedContent LogoStore
+		{
+			get { return GetLogoStore(this); }
+		}
+
+		/// <summary>Static getter for Logo Store</summary>
+		public static IPublishedContent GetLogoStore(IExternalLinks that) { return that.GetPropertyValue<IPublishedContent>("logoStore"); }
+
+		///<summary>
+		/// Name Manager
+		///</summary>
+		[ImplementPropertyType("nameManager")]
+		public string NameManager
+		{
+			get { return GetNameManager(this); }
+		}
+
+		/// <summary>Static getter for Name Manager</summary>
+		public static string GetNameManager(IExternalLinks that) { return that.GetPropertyValue<string>("nameManager"); }
+
+		///<summary>
+		/// Page's Name
+		///</summary>
+		[ImplementPropertyType("pagesName")]
+		public string PagesName
+		{
+			get { return GetPagesName(this); }
+		}
+
+		/// <summary>Static getter for Page's Name</summary>
+		public static string GetPagesName(IExternalLinks that) { return that.GetPropertyValue<string>("pagesName"); }
+
+		///<summary>
+		/// Page's Url
+		///</summary>
+		[ImplementPropertyType("pagesUrl")]
+		public string PagesUrl
+		{
+			get { return GetPagesUrl(this); }
+		}
+
+		/// <summary>Static getter for Page's Url</summary>
+		public static string GetPagesUrl(IExternalLinks that) { return that.GetPropertyValue<string>("pagesUrl"); }
+
+		///<summary>
+		/// Photo Manager
+		///</summary>
+		[ImplementPropertyType("photoManager")]
+		public IPublishedContent PhotoManager
+		{
+			get { return GetPhotoManager(this); }
+		}
+
+		/// <summary>Static getter for Photo Manager</summary>
+		public static IPublishedContent GetPhotoManager(IExternalLinks that) { return that.GetPropertyValue<IPublishedContent>("photoManager"); }
+	}
+
+	/// <summary>Loja Fisica</summary>
+	[PublishedContentModel("lojaFisica")]
+	public partial class LojaFisica : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "lojaFisica";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public LojaFisica(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<LojaFisica, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Loja Virtual</summary>
+	[PublishedContentModel("lojaVirtual")]
+	public partial class LojaVirtual : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "lojaVirtual";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public LojaVirtual(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<LojaVirtual, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	// Mixin content Type 1367 with alias "virtualStoreCard"
+	/// <summary>Virtual Things</summary>
+	public partial interface IVirtualStoreCard : IPublishedContent
+	{
+		/// <summary>External Links</summary>
+		IEnumerable<string> ExternalLinks { get; }
+
+		/// <summary>Place's Photos</summary>
+		IEnumerable<IPublishedContent> PlacesPhotos { get; }
+	}
+
+	/// <summary>Virtual Things</summary>
+	[PublishedContentModel("virtualStoreCard")]
+	public partial class VirtualStoreCard : PublishedContentModel, IVirtualStoreCard
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "virtualStoreCard";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public VirtualStoreCard(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<VirtualStoreCard, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// External Links
+		///</summary>
+		[ImplementPropertyType("externalLinks")]
+		public IEnumerable<string> ExternalLinks
+		{
+			get { return GetExternalLinks(this); }
+		}
+
+		/// <summary>Static getter for External Links</summary>
+		public static IEnumerable<string> GetExternalLinks(IVirtualStoreCard that) { return that.GetPropertyValue<IEnumerable<string>>("externalLinks"); }
+
+		///<summary>
+		/// Place's Photos
+		///</summary>
+		[ImplementPropertyType("placesPhotos")]
+		public IEnumerable<IPublishedContent> PlacesPhotos
+		{
+			get { return GetPlacesPhotos(this); }
+		}
+
+		/// <summary>Static getter for Place's Photos</summary>
+		public static IEnumerable<IPublishedContent> GetPlacesPhotos(IVirtualStoreCard that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("placesPhotos"); }
+	}
+
+	// Mixin content Type 1369 with alias "cardComonStore"
+	/// <summary>Card Comon - Store</summary>
+	public partial interface ICardComonStore : IPublishedContent
+	{
+		/// <summary>External Links 2</summary>
+		IEnumerable<string> ExternalLinks2 { get; }
+
+		/// <summary>Name Store</summary>
+		string NameStore { get; }
+
+		/// <summary>Store Description</summary>
+		string StoreDescription { get; }
+
+		/// <summary>Store Director</summary>
+		string StoreDirector { get; }
+
+		/// <summary>Store Manager</summary>
+		string StoreManager { get; }
+	}
+
+	/// <summary>Card Comon - Store</summary>
+	[PublishedContentModel("cardComonStore")]
+	public partial class CardComonStore : PublishedContentModel, ICardComonStore
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "cardComonStore";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public CardComonStore(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<CardComonStore, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// External Links 2
+		///</summary>
+		[ImplementPropertyType("externalLinks2")]
+		public IEnumerable<string> ExternalLinks2
+		{
+			get { return GetExternalLinks2(this); }
+		}
+
+		/// <summary>Static getter for External Links 2</summary>
+		public static IEnumerable<string> GetExternalLinks2(ICardComonStore that) { return that.GetPropertyValue<IEnumerable<string>>("externalLinks2"); }
+
+		///<summary>
+		/// Name Store
+		///</summary>
+		[ImplementPropertyType("nameStore")]
+		public string NameStore
+		{
+			get { return GetNameStore(this); }
+		}
+
+		/// <summary>Static getter for Name Store</summary>
+		public static string GetNameStore(ICardComonStore that) { return that.GetPropertyValue<string>("nameStore"); }
+
+		///<summary>
+		/// Store Description
+		///</summary>
+		[ImplementPropertyType("storeDescription")]
+		public string StoreDescription
+		{
+			get { return GetStoreDescription(this); }
+		}
+
+		/// <summary>Static getter for Store Description</summary>
+		public static string GetStoreDescription(ICardComonStore that) { return that.GetPropertyValue<string>("storeDescription"); }
+
+		///<summary>
+		/// Store Director
+		///</summary>
+		[ImplementPropertyType("storeDirector")]
+		public string StoreDirector
+		{
+			get { return GetStoreDirector(this); }
+		}
+
+		/// <summary>Static getter for Store Director</summary>
+		public static string GetStoreDirector(ICardComonStore that) { return that.GetPropertyValue<string>("storeDirector"); }
+
+		///<summary>
+		/// Store Manager
+		///</summary>
+		[ImplementPropertyType("storeManager")]
+		public string StoreManager
+		{
+			get { return GetStoreManager(this); }
+		}
+
+		/// <summary>Static getter for Store Manager</summary>
+		public static string GetStoreManager(ICardComonStore that) { return that.GetPropertyValue<string>("storeManager"); }
+	}
+
+	/// <summary>Loja Detalhe Virtual</summary>
+	[PublishedContentModel("lojaDetalheVirtual")]
+	public partial class LojaDetalheVirtual : Lojas, ICardComonStore, IExternalLinks, IVirtualStoreCard
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "lojaDetalheVirtual";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public LojaDetalheVirtual(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<LojaDetalheVirtual, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// External Links 2
+		///</summary>
+		[ImplementPropertyType("externalLinks2")]
+		public IEnumerable<string> ExternalLinks2
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetExternalLinks2(this); }
+		}
+
+		///<summary>
+		/// Name Store
+		///</summary>
+		[ImplementPropertyType("nameStore")]
+		public string NameStore
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetNameStore(this); }
+		}
+
+		///<summary>
+		/// Store Description
+		///</summary>
+		[ImplementPropertyType("storeDescription")]
+		public string StoreDescription
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreDescription(this); }
+		}
+
+		///<summary>
+		/// Store Director
+		///</summary>
+		[ImplementPropertyType("storeDirector")]
+		public string StoreDirector
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreDirector(this); }
+		}
+
+		///<summary>
+		/// Store Manager
+		///</summary>
+		[ImplementPropertyType("storeManager")]
+		public string StoreManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.CardComonStore.GetStoreManager(this); }
+		}
+
+		///<summary>
+		/// Contact Manager
+		///</summary>
+		[ImplementPropertyType("contactManager")]
+		public string ContactManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetContactManager(this); }
+		}
+
+		///<summary>
+		/// Logo Store
+		///</summary>
+		[ImplementPropertyType("logoStore")]
+		public IPublishedContent LogoStore
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetLogoStore(this); }
+		}
+
+		///<summary>
+		/// Name Manager
+		///</summary>
+		[ImplementPropertyType("nameManager")]
+		public string NameManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetNameManager(this); }
+		}
+
+		///<summary>
+		/// Page's Name
+		///</summary>
+		[ImplementPropertyType("pagesName")]
+		public string PagesName
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetPagesName(this); }
+		}
+
+		///<summary>
+		/// Page's Url
+		///</summary>
+		[ImplementPropertyType("pagesUrl")]
+		public string PagesUrl
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetPagesUrl(this); }
+		}
+
+		///<summary>
+		/// Photo Manager
+		///</summary>
+		[ImplementPropertyType("photoManager")]
+		public IPublishedContent PhotoManager
+		{
+			get { return Umbraco.Web.PublishedContentModels.ExternalLinks.GetPhotoManager(this); }
+		}
+
+		///<summary>
+		/// External Links
+		///</summary>
+		[ImplementPropertyType("externalLinks")]
+		public IEnumerable<string> ExternalLinks
+		{
+			get { return Umbraco.Web.PublishedContentModels.VirtualStoreCard.GetExternalLinks(this); }
+		}
+
+		///<summary>
+		/// Place's Photos
+		///</summary>
+		[ImplementPropertyType("placesPhotos")]
+		public IEnumerable<IPublishedContent> PlacesPhotos
+		{
+			get { return Umbraco.Web.PublishedContentModels.VirtualStoreCard.GetPlacesPhotos(this); }
 		}
 	}
 

@@ -7,25 +7,27 @@
 
  
 <div id="sd">
-
+        
 
     <div class="container">
         <div class="row">
             <h3>Entre em Contato</h3>
-
+            
             <div class="input-field col s6">
                 @Html.TextBoxFor(m => m.Name, new { id = "name" })
                 @Html.ValidationMessageFor(m => m.Name)
                 <label class="active" for="first_name2">Nome</label>
 
             </div>
+
         </div>
+
         <div class="row">
             <div class="input-field col s6">
                 @Html.TextBoxFor(m => m.Email, new { id = "email" })
                 @Html.ValidationMessageFor(m => m.Email)
 
-                <label class="active " for="first_name2">Nome</label>
+                <label class="active " for="first_name2">Email</label>
 
             </div>
         </div>
@@ -34,7 +36,7 @@
                 @Html.TextBoxFor(m => m.Message, new { id = "messsage" })
                 @Html.ValidationMessageFor(m => m.Message)
 
-                <label class="active" for="first_name2">Nome</label>
+                <label class="active" for="first_name2">Mensagem</label>
             </div>
         </div>
         <input type="submit" value="Submit" class="btn waves-effect waves-light"  />

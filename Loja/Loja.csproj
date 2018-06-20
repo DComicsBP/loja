@@ -456,7 +456,6 @@
     <Content Include="Views\Partials\LojaDetatlhe.cshtml" />
     <Content Include="Views\Partials\WorkWithUsP.cshtml" />
     <Content Include="Views\LojaDetatlhe.cshtml" />
-    <Content Include="Views\Produto.cshtml" />
     <Content Include="Views\Products\CardDescriptionClothes.cshtml" />
     <Content Include="Views\Categories.cshtml" />
     <Content Include="Views\Produtos.cshtml" />
