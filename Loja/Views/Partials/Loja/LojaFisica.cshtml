@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<div>
+    @{
+        var children = Model.Content.Children;
+
+        foreach(var child in children)
+        {
+            var titleCardStore = child.GetPropertyValue<string>("title"); 
+        }   
+
+    }
+</div>

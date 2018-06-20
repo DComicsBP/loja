@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+@{ 
+    var model = Model.Content;
+    var description = model.GetPropertyValue<string>("description");
+    var title = model.GetPropertyValue<string>("title"); 
+
+    <div class="row">
+
+        <div class="container">
+            <h4>@title</h4>
+            <br />
+            @description
+        </div>
+    </div>
+}

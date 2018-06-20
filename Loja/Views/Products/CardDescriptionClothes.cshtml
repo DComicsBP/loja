@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using Loja.Util
 @using Loja.Models
 
+@Html.Action("Index", "CardDescriptionClothes")
 
 <br>
 
@@ -17,11 +17,11 @@
 
         foreach (var NodeCategories in cont)
         {
-            var getNode = NodeCategories; 
+            var getNode = NodeCategories;
             foreach (var Node in NodeCategories.Children)
             {
 
-         
+
                 var card = Loja.Util.Util.Card(Node);
 
                 if (card != null)
@@ -44,37 +44,37 @@
 
 
 
-             <div class="col s3">
+                <div class="col s3">
 
-                 <div class="card">
-                     <div class="card-image">
-                         <img src="@imageProduct" width="20" height="310" />
-                     </div>
-                     <div class="card-content">
-                         <p>
-                             <span class="card-title">@name</span>
-                         </p>
-                     </div>
-                     <div class="">
-                         <a>@description</a>
-                         <br />
-                         <span id="value">
-                             @value
-                         </span>
-                     </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="@imageProduct" width="20" height="310" />
+                        </div>
+                        <div class="card-content">
+                            <p>
+                                <span class="card-title">@name</span>
+                            </p>
+                        </div>
+                        <div class="">
+                            <a>@description</a>
+                            <br />
+                            <span id="value">
+                                @value
+                            </span>
+                        </div>
 
-                 </div>
+                    </div>
 
-             </div>
+                </div>
 
             }
 
-         }
+        }
 
 
-     }
+    }
 
-   </div>
+</div>
 
 
 

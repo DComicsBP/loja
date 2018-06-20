@@ -9,7 +9,7 @@ namespace Loja.Controller
 {
     public class HomeController : SurfaceController
     {
-        // GET: Home
+        
         public ActionResult Index()
         {
             return View();

@@ -16,17 +16,15 @@ namespace Loja.Controller
 {
     public class ProductController : SurfaceController
     {
-            public ProductController()
-            : this(UmbracoContext.Current)
-            {
-            }
+        protected ProductController()
+        {
+        }
 
-            public ProductController(UmbracoContext umbracoContext)
-                : base(umbracoContext)
-            {
-            }
+        protected ProductController(UmbracoContext umbracoContext, UmbracoHelper umbracoHelper) : base(umbracoContext, umbracoHelper)
+        {
+        }
 
-            public ActionResult Index(string id)
+        public ActionResult Product(string id)
             {
             var criteria = ExamineManager.Instance.DefaultSearchProvider.CreateSearchCriteria("content");
             var filter = criteria.NodeTypeAlias("card").And().NodeName(id.Replace("-", " "));
@@ -39,7 +37,7 @@ namespace Loja.Controller
                 throw new HttpException(404, "No product");
             }
 
-            return View("PageProduct", CreateRenderModel(result.First()));
+            return View("Produtos", CreateRenderModel(result.First()));
         }
 
         private RenderModel CreateRenderModel(IPublishedContent content)

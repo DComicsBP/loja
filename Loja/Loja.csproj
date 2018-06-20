@@ -460,6 +460,9 @@
     <Content Include="Views\Categories.cshtml" />
     <Content Include="Views\Produtos.cshtml" />
     <Content Include="Views\Products\CardCategories.cshtml" />
+    <Content Include="Views\Partials\Loja\LojaDefault.cshtml" />
+    <Content Include="Views\Partials\Loja\LojaFisica.cshtml" />
+    <Content Include="Views\Partials\Loja\LojaVirtual.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -473,6 +476,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CardDescriptionClothesController.cs" />
     <Compile Include="Controller\ProductController.cs" />
     <Compile Include="Controller\WorkWithUsController.cs" />
     <Compile Include="Controller\ContactUsController.cs" />
@@ -497,6 +501,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\CardDescriptionClothes\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Main\" />
     <Folder Include="Views\Product\" />

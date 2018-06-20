@@ -1,15 +1,31 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @{
     Layout = "Master.cshtml";
-}
 
-@{
     var Page = Loja.Util.Util.FindParent(Model.Content);
 
 }
 
-<h1>
-    Lojas
-</h1>
+@{
+    var id = Model.Content.Id;
+    switch (id)
+    {
+        case 1349:
+            Html.RenderPartial("~/Views/Partials/Loja/LojaDefault.cshtml");
+            break;
+        case 1408:
+            Html.RenderPartial("~/Views/Partials/Loja/LojaFisica.cshtml");
+            break;
+        case 1379:
+            Html.RenderPartial("~/Views/Partials/Loja/LojaVirtual.cshtml");
+            break;
 
-@RenderBody()
+    }
+
+
+}
+
+
+
+
+    
