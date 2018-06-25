@@ -411,6 +411,7 @@
     <Content Include="Scripts\jquery.slim.min.js" />
     <Content Include="Scripts\materialize\materialize.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\cardDescriptionClothes.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -463,6 +464,8 @@
     <Content Include="Views\Partials\Loja\LojaDefault.cshtml" />
     <Content Include="Views\Partials\Loja\LojaFisica.cshtml" />
     <Content Include="Views\Partials\Loja\LojaVirtual.cshtml" />
+    <Content Include="Views\Partials\Error.cshtml" />
+    <Content Include="Views\Partials\Success.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

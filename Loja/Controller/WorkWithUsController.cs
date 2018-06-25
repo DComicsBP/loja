@@ -30,11 +30,7 @@ namespace Loja.Controller
 
         private void SendEmail(WorkWithUsModel model)
         {
-            /*
-             https://msdn.microsoft.com/pt-br/library/system.net.mail.mailmessage(v=vs.100).aspx
-
-             */
-
+       
                 MailMessage mail = new MailMessage();
 
             try

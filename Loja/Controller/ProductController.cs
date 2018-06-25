@@ -23,7 +23,13 @@ namespace Loja.Controller
         protected ProductController(UmbracoContext umbracoContext, UmbracoHelper umbracoHelper) : base(umbracoContext, umbracoHelper)
         {
         }
+        public const string PARTIAL_CARD = "~/Views/Partials/Products/CardDescriptionClothes.cshtml";
+        [HttpGet]
 
+        public ActionResult Index(CardModel model)
+        {
+            return PartialView(PARTIAL_CARD);
+        }
         public ActionResult Product(string id)
             {
             var criteria = ExamineManager.Instance.DefaultSearchProvider.CreateSearchCriteria("content");

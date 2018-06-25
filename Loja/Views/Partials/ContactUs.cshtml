@@ -1,50 +1,56 @@
 ﻿@inherits  UmbracoViewPage<Loja.Models.ContactUsModel>
-    @using (Html.BeginUmbracoForm("SubmitForm", "ContactUs", FormMethod.Post, new { onsubmit= "return validate();" }))
+@using (Ajax.BeginForm("SubmitForm", "ContactUs", new AjaxOptions()
 
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary()
+{
+    UpdateTargetId = "form-result",
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "contactForm.ShowResult",
+    OnFailure = "contactForm.ShowResult"
 
- 
-<div id="sd">
-        
-        
-    <div class="container">
-        <div class="row">
-            <h3>Entre em Contato</h3>
-            
-            <div class="input-field col s6">
-                @Html.TextBoxFor(m => m.Name, new { id = "name" })
-                @Html.ValidationMessageFor(m => m.Name)
-                <label class="active" for="first_name2">Nome</label>
+}, new { id = "contactUs-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="sd">
 
-            </div>
 
-        </div>
+        <div class="container">
+            <div class="row">
+                <h3>Entre em Contato</h3>
 
-        <div class="row">
-            <div class="input-field col s6">
-                @Html.TextBoxFor(m => m.Email, new { id = "email" })
-                @Html.ValidationMessageFor(m => m.Email)
+                <div class="input-field col s6">
+                    @Html.TextBoxFor(m => m.Name, new { id = "name" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                    <label class="active" for="first_name2">Nome</label>
 
-                <label class="active " for="first_name2">Email</label>
+                </div>
 
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s6">
-                @Html.TextBoxFor(m => m.Message, new { id = "messsage" })
-                @Html.ValidationMessageFor(m => m.Message)
 
-                <label class="active" for="first_name2">Mensagem</label>
+            <div class="row">
+                <div class="input-field col s6">
+                    @Html.TextBoxFor(m => m.Email, new { id = "email" })
+                    @Html.ValidationMessageFor(m => m.Email)
+
+                    <label class="active " for="first_name2">Email</label>
+
+                </div>
             </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    @Html.TextBoxFor(m => m.Message, new { id = "messsage" })
+                    @Html.ValidationMessageFor(m => m.Message)
+
+                    <label class="active" for="first_name2">Mensagem</label>
+                </div>
+            </div>
+            <input type="submit" value="Submit" class="btn waves-effect waves-light" />
         </div>
-        <input type="submit" value="Submit" class="btn waves-effect waves-light"  />
     </div>
-</div>
-    }
+}
+<input name="__RequestVerificationToken" type="hidden" value="DNbDMrzHmy37GPS6IFH-EmcIh4fJ2laezIrIEev5f4vOhsY9T7SkH9-1b7GPjm92CTFtb4dGqSe2SSYrlWSNEQG1MUlNyiLP1wtYli8bIh41" />
 
 <script>
-   
+
 
 </script>

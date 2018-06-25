@@ -18,7 +18,12 @@
         
             @if (Model.Content.Id != 1247)
             {
-                Html.RenderPartial("~/Views/Partials/ContactUs.cshtml", new ContactUsModel());
+               <div>
+                  @{
+                      Html.RenderAction("RenderForm", "ContactUs");
+                  }
+               </div>
+
             }
         
 

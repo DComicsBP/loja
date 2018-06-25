@@ -1,39 +1,43 @@
 ﻿using Loja.Models;
 using System;
-using System.Web.Mvc; 
+using System.Web.Mvc;
 using Umbraco.Web.Mvc;
-using System.Net.Mail; 
+using System.Net.Mail;
 
 namespace Loja.Controller
 {
     public class ContactUsController : SurfaceController
     {
-        public const string PARTIAL_VIEW_CONTACT_US  = "~/Views/Partials/";
+
+        public string GetViewPath(string name)
+        {
+            return $"/Views/Partials/{name}.cshtml";
+        }
+
+        [HttpGet]
         public ActionResult RenderForm(ContactUsModel model)
         {
-            return PartialView(PARTIAL_VIEW_CONTACT_US + "ContactUs.cshtml");
+            return PartialView(GetViewPath("ContactUs"), model);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult SubmitForm(ContactUsModel model)
         {
-
+            bool success = false;
             if (ModelState.IsValid)
             {
-                SendEmail(model);
-                return RedirectToCurrentUmbracoPage(); 
+                success = SendEmail(model);
             }
-            return CurrentUmbracoPage();
-        }
 
-        private void SendEmail(ContactUsModel model)
+            return PartialView(GetViewPath(success ? "Success" : "Error"));
+        }
+        
+        private bool SendEmail(ContactUsModel model)
         {
             /*
              https://msdn.microsoft.com/pt-br/library/system.net.mail.mailmessage(v=vs.100).aspx
-
              */
 
-                MailMessage mail = new MailMessage();
+            MailMessage mail = new MailMessage();
 
             try
             {
@@ -54,17 +58,18 @@ namespace Loja.Controller
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
                 client.Send(mail);
+                return true;
             }
             catch (System.Exception erro)
             {
-                 
+
                 View("~/Views/Partials/ErrorView.cshtml", model);
+                return false;
             }
             finally
             {
                 mail = null;
             }
-          
 
         }
     }
