@@ -10,8 +10,7 @@
     }
 })*/
   
-$.ajax({
-    type: 'GET',
+ /*   type: 'GET',
     dataType: 'json',
     url: urlAction,
     success: function (dados) {
@@ -25,4 +24,4 @@ $.ajax({
         success: function (response) {
             console.log(response)
           });
- 
+*/
