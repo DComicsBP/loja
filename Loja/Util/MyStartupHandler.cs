@@ -26,6 +26,7 @@ namespace Loja.Util
             UmbracoApplicationBase umbracoApplication,
             ApplicationContext applicationContext)
         {
+
         }
         public void OnApplicationStarting(
             UmbracoApplicationBase umbracoApplication,

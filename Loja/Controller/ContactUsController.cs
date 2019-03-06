@@ -62,7 +62,6 @@ namespace Loja.Controller
             }
             catch (System.Exception erro)
             {
-
                 View("~/Views/Partials/ErrorView.cshtml", model);
                 return false;
             }

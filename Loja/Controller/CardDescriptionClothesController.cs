@@ -12,7 +12,7 @@ namespace Loja.Controller
         {
             var ProductComponent = Umbraco.TypedContent(ProductID);
 
-            var Products = new List<IPublishedContent>(); //ProductComponent.GetPropertyValue<IEnumerable<IPublishedContent>>("productComponentProducts");
+            var Products = new List<IPublishedContent>(); 
 
             foreach (var Node in ProductComponent.GetPropertyValue<List<IPublishedContent>>("card"))
             {
@@ -28,8 +28,6 @@ namespace Loja.Controller
                     Products.Add(Node);
                 }
             }
-
-            
             return Json(Products);
         }
     }

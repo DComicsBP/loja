@@ -466,6 +466,7 @@
     <Content Include="Views\Partials\Loja\LojaVirtual.cshtml" />
     <Content Include="Views\Partials\Error.cshtml" />
     <Content Include="Views\Partials\Success.cshtml" />
+    <Content Include="Views\ProdutoDetalheCompras.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -5,24 +5,17 @@
 <br>
 
 <div class="row content-cards">
-   
-   
-
     @{
         var cont = Model.Content.Children;
         List<IPublishedContent> ProductList = new List<IPublishedContent>();
         List<Category> CategoryList = new List<Category>();
         var umbracoPage = Umbraco.Content(cont);
 
-
-
         foreach (var NodeCategories in cont)
         {
             var getNode = NodeCategories;
             foreach (var Node in NodeCategories.Children)
             {
-
-
                 var card = Loja.Util.Util.Card(Node);
 
                 if (card != null)
@@ -31,8 +24,6 @@
                     {
                         foreach (var cat in card.CategoryList)
                         {
-
-
                             CategoryList.Add(cat);
                         }
                     }
@@ -42,8 +33,6 @@
                 var description = card.Description;
                 var value = card.Value;
                 var imageProduct = card.Image;
-
-
     <a href="">
         <div class="col s3">
 
@@ -63,8 +52,6 @@
                     <span id="value">
                         @value
                     </span>
-
-
                 </div>
                 <br />
                 <br />
@@ -73,29 +60,15 @@
 
         </div>
     </a>
-
             }
 
         }
-
 
     }
 
 </div>
 
-
-<script>
-
-    
-    $.ajax({
-        url: '@Url.Action("FilterProducts", "CardDescriptionClothes")',
-        type: 'GET',
-        data: { 'CardMomdel': ProductList },
-        datatype: 'json',
-        
-        success: function (json) {
-            alert(json);
-        }
-    })
+ 
+<script src="~/Scripts/pages/cardDescriptionClothes.js">
 </script>
 

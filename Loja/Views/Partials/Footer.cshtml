@@ -1,21 +1,12 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Loja.Models
 
-
-
-
-
 <footer class="page-footer brown darken-1 ">
 
     @{
         var h1 = Model.Content.GetPropertyValue<string>("titleFooter");
-
-
     }
-
-   
     <div class="row">
-        
             @if (Model.Content.Id != 1247)
             {
                <div>
@@ -23,13 +14,8 @@
                       Html.RenderAction("RenderForm", "ContactUs");
                   }
                </div>
-
             }
-        
-
     </div>
-
-
     <div class="footer-copyright">
         <div class="container">
             © 2014 Copyright Text

@@ -4,7 +4,14 @@
 <nav>
 
     <div class="nav-wrapper brown darken-1">
-        <a href="/" class="brand-logo">Logo</a>
+        @{ 
+            var ID = Model.Content.GetPropertyValue("logo");
+            var url = Umbraco.TypedContent(ID).Url; 
+
+
+
+        }
+        <a href="/" class="brand-logo"><img  src="@Model.Content.GetPropertyValue("logo")"/></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 
             @{

@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "28eb792999aee09d")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.3")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "f79a9479a26b399c")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -116,11 +116,11 @@ namespace Umbraco.Web.PublishedContentModels
 	/// <summary>Header</summary>
 	public partial interface IHeader : IPublishedContent
 	{
-		/// <summary>Images - Header</summary>
-		IEnumerable<IPublishedContent> ImagesHeader { get; }
-
 		/// <summary>Links - Header</summary>
 		IEnumerable<IPublishedContent> LinksHeader { get; }
+
+		/// <summary>Logo</summary>
+		IPublishedContent Logo { get; }
 	}
 
 	/// <summary>Header</summary>
@@ -149,18 +149,6 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Images - Header
-		///</summary>
-		[ImplementPropertyType("imagesHeader")]
-		public IEnumerable<IPublishedContent> ImagesHeader
-		{
-			get { return GetImagesHeader(this); }
-		}
-
-		/// <summary>Static getter for Images - Header</summary>
-		public static IEnumerable<IPublishedContent> GetImagesHeader(IHeader that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("imagesHeader"); }
-
-		///<summary>
 		/// Links - Header
 		///</summary>
 		[ImplementPropertyType("linksHeader")]
@@ -171,6 +159,18 @@ namespace Umbraco.Web.PublishedContentModels
 
 		/// <summary>Static getter for Links - Header</summary>
 		public static IEnumerable<IPublishedContent> GetLinksHeader(IHeader that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("linksHeader"); }
+
+		///<summary>
+		/// Logo
+		///</summary>
+		[ImplementPropertyType("logo")]
+		public IPublishedContent Logo
+		{
+			get { return GetLogo(this); }
+		}
+
+		/// <summary>Static getter for Logo</summary>
+		public static IPublishedContent GetLogo(IHeader that) { return that.GetPropertyValue<IPublishedContent>("logo"); }
 	}
 
 	// Mixin content Type 1218 with alias "footer"
@@ -571,21 +571,21 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Images - Header
-		///</summary>
-		[ImplementPropertyType("imagesHeader")]
-		public IEnumerable<IPublishedContent> ImagesHeader
-		{
-			get { return Umbraco.Web.PublishedContentModels.Header.GetImagesHeader(this); }
-		}
-
-		///<summary>
 		/// Links - Header
 		///</summary>
 		[ImplementPropertyType("linksHeader")]
 		public IEnumerable<IPublishedContent> LinksHeader
 		{
 			get { return Umbraco.Web.PublishedContentModels.Header.GetLinksHeader(this); }
+		}
+
+		///<summary>
+		/// Logo
+		///</summary>
+		[ImplementPropertyType("logo")]
+		public IPublishedContent Logo
+		{
+			get { return Umbraco.Web.PublishedContentModels.Header.GetLogo(this); }
 		}
 	}
 
@@ -1671,6 +1671,59 @@ namespace Umbraco.Web.PublishedContentModels
 		public IEnumerable<IPublishedContent> PlacesPhotos
 		{
 			get { return Umbraco.Web.PublishedContentModels.VirtualStoreCard.GetPlacesPhotos(this); }
+		}
+	}
+
+	/// <summary>Card Item Type</summary>
+	[PublishedContentModel("cardItemType")]
+	public partial class CardItemType : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "cardItemType";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public CardItemType(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<CardItemType, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Imagem: Insira a imagem do tipo de loja que deverá ser acessado.
+		///</summary>
+		[ImplementPropertyType("imagem")]
+		public IPublishedContent Imagem
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("imagem"); }
+		}
+
+		///<summary>
+		/// Internal Link: Adicione o link interno ao qual o usuário deverá ser redirecionado ao clicar.
+		///</summary>
+		[ImplementPropertyType("internalLink")]
+		public IPublishedContent InternalLink
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("internalLink"); }
+		}
+
+		///<summary>
+		/// Tipo: Insira o tipo de loja que você deseja colocar no site (se é virtual ou física)
+		///</summary>
+		[ImplementPropertyType("tipo")]
+		public string Tipo
+		{
+			get { return this.GetPropertyValue<string>("tipo"); }
 		}
 	}
 
