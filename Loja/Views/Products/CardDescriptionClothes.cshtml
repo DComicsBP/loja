@@ -33,42 +33,39 @@
                 var description = card.Description;
                 var value = card.Value;
                 var imageProduct = card.Image;
-    <a href="">
-        <div class="col s3">
+                
+                <a href=""> 
+                    <div class="col s3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="@imageProduct" width="20" height="310" />
+                            </div>
+                            <div class="card-content">
+                                <p>
+                                    <span class="card-title">@name</span>
+                                </p>
+                            </div>
+                            <div class="">
 
-            <div class="card">
-                <div class="card-image">
-                    <img src="@imageProduct" width="20" height="310" />
-                </div>
-                <div class="card-content">
-                    <p>
-                        <span class="card-title">@name</span>
-                    </p>
-                </div>
-                <div class="">
+                                <a>@description</a>
+                                <br />
 
-                    <a>@description</a>
-                    <br />
-                    <span id="value">
-                        @value
-                    </span>
-                </div>
-                <br />
-                <br />
-
-            </div>
-
-        </div>
-    </a>
+                                <span id="value">
+                                    @value
+                                </span>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </a>
             }
-
         }
-
     }
 
 </div>
 
- 
+
 <script src="~/Scripts/pages/cardDescriptionClothes.js">
 </script>
 

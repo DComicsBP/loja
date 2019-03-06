@@ -15,74 +15,74 @@ namespace Loja.Util
 {
     public static class Util
     {
-
         public static IPublishedContent FindHome(IPublishedContent node)
         {
             if (node.Level == 1) return node;
+
             else return FindHome(node.Parent);
         }
 
         public static CardModel Card(IPublishedContent cont)
         {
-            CardModel cardModel = new CardModel(); 
+            CardModel cardModel = new CardModel();
             var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
-          
-         
+            cardModel.ID = cont.Id;
+            cardModel.Name = cont.GetPropertyValue<string>("prodName");
+            cardModel.Description = cont.GetPropertyValue<string>("prodDescription");
+            cardModel.Value = cont.GetPropertyValue<string>("prodValue");
 
-                cardModel.ID = cont.Id;
-                cardModel.Name = cont.GetPropertyValue<string>("prodName");
-                cardModel.Description = cont.GetPropertyValue<string>("prodDescription");
-                cardModel.Value = cont.GetPropertyValue<string>("prodValue");
-                if(cont.GetPropertyValue<int>("imageProduct") !=  0)
-                {
-                    cardModel.Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("imageProduct")).Url;
-                }
-                if(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories") != null)
-                {
-                     cardModel.CategoryList = GetCategoriesName(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")).ToList();
+            if (cont.GetPropertyValue<int>("imageProduct") != 0)
+            {
+                cardModel.Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("imageProduct")).Url;
+            }
 
-                }
-
-
-
+            if (cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories") != null)
+            {
+                cardModel.CategoryList = GetCategoriesName(cont.GetPropertyValue<IEnumerable<IPublishedContent>>("categories")).ToList();
+            }
 
             return cardModel;
         }
 
-
         public static List<Category> GetCategoriesName(IEnumerable<IPublishedContent> content)
         {
-            List<Category> categoryList = new List<Category>(); 
+            List<Category> categoryList = new List<Category>();
 
-            foreach(var cat in content)
+            foreach (var cat in content)
             {
                 Category c = new Category();
                 c.ID = cat.Id;
                 c.Name = cat.Name;
                 categoryList.Add(c);
-                
+
             }
             return categoryList;
+        }
+        public static List<string> GetLinkNameByType(IEnumerable<IPublishedContent> content)
+        {
+            List<string> nameStoreList = new List<string>();
+
+            foreach (var cat in content)
+            {
+                var c = cat.ToString();
+
+                nameStoreList.Add(c);
+            }
+            return nameStoreList;
         }
 
         public static Category GetCategoryName(int id)
         {
             var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
 
-
             Category categoria = new Category
             {
                 ID = id,
                 Name = umbracoHelper.TypedContent(id).Name
-            }; 
+            };
 
-
-        
-            return categoria; 
-
+            return categoria;
         }
-
-
 
         public static IPublishedContent FindParent(IPublishedContent Node)
         {
@@ -104,7 +104,5 @@ namespace Loja.Util
                 return new[] { "home", "produto", "lojas", "trabalheConosco" };
             }
         }
-
-
     }
 }

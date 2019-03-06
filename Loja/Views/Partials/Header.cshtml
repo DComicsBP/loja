@@ -5,34 +5,27 @@
 
     <div class="nav-wrapper brown darken-1">
         @{ 
-            var ID = Model.Content.GetPropertyValue("logo");
-            var url = Umbraco.TypedContent(ID).Url; 
-
-
+            var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id);
+            var linksHeader = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("linksHeader");
+            var logo = cont.GetPropertyValue<IPublishedContent>("logo").Url;
+            var teste = Model.Content;
 
         }
-        <a href="/" class="brand-logo"><img  src="@Model.Content.GetPropertyValue("logo")"/></a>
+        <a href="/" class="brand-logo"><img  src="@logo" width="120" height="62"/></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 
             @{
-                var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id);
-                var linksHeader = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("linksHeader");
-
                 foreach (var item in linksHeader)
-                 {
-                         var i = item.GetPropertyValue<string>("title");
-                         var link = item.GetPropertyValue<IPublishedContent>("internalLinks").Url.ToString();
+                {
+                    var i = item.GetPropertyValue<string>("title");
+                    var link = item.GetPropertyValue<IPublishedContent>("internalLinks").Url.ToString();
 
-                         if (i.Equals("Home")) { continue; }
-                         else { <li><a href="@link">@i </a></li> }
+                    if (i.Equals("Home")) { continue; }
+                    else { <li><a href="@link">@i </a></li> }
                  }
             }
-
         </ul>
-
-
     </div>
-    
 </nav>
 
 
