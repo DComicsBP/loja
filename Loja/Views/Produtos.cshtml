@@ -5,12 +5,12 @@
 
 @{
 
-    var Page = Loja.Util.Util.FindParent(Model.Content);
+var Page = Loja.Util.Util.FindParent(Model.Content);
 <div id="cards-type-store">
 
     @{ 
         var content = Model.Content;
-        var teste02 = content.
+       // var teste02 = content.
         var teste = "teste ";
     }
 
@@ -36,13 +36,10 @@
         </div>
     </div>
 </div>
-
-
 }
-
 <div class="row position-categories">
     <div class="container">
     </div>
 </div>
-@*@Html.Partial("Products/CardDescriptionClothes")
-@Html.Partial("Products/CardCategories")*@
+@Html.Partial("Products/CardDescriptionClothes")
+@*Html.Partial("Products/CardCategories")*@

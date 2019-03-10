@@ -8,7 +8,7 @@
     @{
         var cont = Model.Content.Children;
         List<IPublishedContent> ProductList = new List<IPublishedContent>();
-        List<Category> CategoryList = new List<Category>();
+        List<string> CategoryList = new List<string>();
         var umbracoPage = Umbraco.Content(cont);
 
         foreach (var NodeCategories in cont)
@@ -20,14 +20,15 @@
 
                 if (card != null)
                 {
-                    if (card.CategoryList != null)
+                    if (card.Itens != null)
                     {
-                        foreach (var cat in card.CategoryList)
+                        foreach (var cat in card.Itens.Categories)
                         {
                             CategoryList.Add(cat);
                         }
                     }
                 }
+
                 ProductList.Add(Node);
                 var name = card.Name;
                 var description = card.Description;

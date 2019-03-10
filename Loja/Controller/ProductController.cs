@@ -16,13 +16,7 @@ namespace Loja.Controller
 {
     public class ProductController : SurfaceController
     {
-        protected ProductController()
-        {
-        }
-
-        protected ProductController(UmbracoContext umbracoContext, UmbracoHelper umbracoHelper) : base(umbracoContext, umbracoHelper)
-        {
-        }
+        
         public const string PARTIAL_CARD = "~/Views/Partials/Products/CardDescriptionClothes.cshtml";
         [HttpGet]
 
@@ -34,7 +28,6 @@ namespace Loja.Controller
             {
             var criteria = ExamineManager.Instance.DefaultSearchProvider.CreateSearchCriteria("content");
             var filter = criteria.NodeTypeAlias("card").And().NodeName(id.Replace("-", " "));
-
             var result = Umbraco.TypedSearch(filter.Compile()).ToArray();
 
 
