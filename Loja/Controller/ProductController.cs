@@ -20,7 +20,7 @@ namespace Loja.Controller
         public const string PARTIAL_CARD = "~/Views/Partials/Products/CardDescriptionClothes.cshtml";
         [HttpGet]
 
-        public ActionResult Index(CardModel model)
+        public ActionResult Index(ProductModels model)
         {
             return PartialView(PARTIAL_CARD);
         }

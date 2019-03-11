@@ -5,7 +5,7 @@
 
     <div class="nav-wrapper brown darken-1">
         @{ 
-            var cont = Umbraco.TypedContent(uQuery.GetNodesByType("home").FirstOrDefault().Id);
+            var cont = Umbraco.TypedContent(uQuery.GetNodesByType("header").FirstOrDefault().Id);
             var linksHeader = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("linksHeader");
             var logo = cont.GetPropertyValue<IPublishedContent>("logo").Url;
             var teste = Model.Content;

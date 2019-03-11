@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loja", "Loja\Loja.csproj", "{119978C9-3F0E-45DF-8C7B-669C4BD0FAAA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3AB89EC1-46C9-40E8-8C1A-06FFCE4993F4}"
+	ProjectSection(SolutionItems) = preProject
+		Loja\Views\Partials\Loja\LojaDefault.cshtml = Loja\Views\Partials\Loja\LojaDefault.cshtml
+		Loja\Views\Partials\Loja\LojaFisica.cshtml = Loja\Views\Partials\Loja\LojaFisica.cshtml
+		Loja\Views\Partials\Loja\LojaVirtual.cshtml = Loja\Views\Partials\Loja\LojaVirtual.cshtml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

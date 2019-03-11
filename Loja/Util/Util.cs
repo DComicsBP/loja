@@ -24,47 +24,68 @@ namespace Loja.Util
             else return FindHome(node.Parent);
         }
 
-        public static CardModel Card(IPublishedContent cont)
+        public static ProductModels Card(IPublishedContent cont)
         {
-            UmbracoHelper umbracoHelper = new UmbracoHelper();
-            
-            CardModel cardModel = new CardModel();
+            // faz a listagem das categorias 
+            List<string> categoriesString = new List<string>();
+            // faz a listagem do link das categorias 
+            List<string> linkCategories = new List<string>();
 
-            string description = cont.GetPropertyValue<string>("description"); 
-            string name = cont.GetPropertyValue<string>("prodName");
-            //   string urlImage = cont.GetPropertyValue<string>("image").FormatUrl();
-             List<IPublishedContent> objectJson = cont.GetPropertyValue<List<IPublishedContent>>("details");
-            foreach(var item in objectJson)
+            // instancia o Umbraco Helper
+            UmbracoHelper umbracoHelper = new UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
+            // instancia novo objeto de card Model para fazer o molde das informações
+            ProductModels cardModel = new ProductModels();
+            // pega a lista de detalhes que cada produto poderá ter no admin do umbraco.             
+            IEnumerable<IPublishedContent> details = cont.GetPropertyValue<IEnumerable<IPublishedContent>>("details");
+            // itera o array de detalhes. 
+            foreach (var item in details)
             {
-                var categories = item.GetPropertyValue<IEnumerable<IPublishedContent>>("categories");
-                List<string> categoriesString = new List<string>(); 
-                 foreach(var cat in categories)
+                // como os produtos estão dispostos por categorias, primeiro se intera as categorias
+                // um produto pode ter mais de uma categoria por isso da lista de categorias.
+                var categories = item.GetPropertyValue<List<IPublishedContent>>("categories");
+
+                foreach (var cat in categories)
                 {
                     string nome = cat.Name;
+                    string link = cat.Url;
                     categoriesString.Add(nome);
+                    linkCategories.Add(link);
                 }
 
                 ModelItensProduct itensProduct = new ModelItensProduct()
                 {
                     Amount = item.GetPropertyValue<string>("amount"),
-                    Value = item.GetPropertyValue<string>("prodValue"), 
-                    Store = item.GetPropertyValue<string>("store"), 
-                    Categories = categoriesString
+                    Value = item.GetPropertyValue<string>("prodValue"),
+                    Store = item.GetPropertyValue<string>("store"),
+                    Categories = categoriesString,
+                    LinksCategories = linkCategories
                 };
-
-            cardModel.Itens = itensProduct;
-
+                cardModel.Itens = itensProduct;
             }
 
-            //var teste = objectJson.TryConvertTo(c); 
-            cardModel.Name = cont.GetPropertyValue<string>("productsName");
+            string numberOne = "", numberTwo = "";
 
+            if (details.First().GetPropertyValue<string>("prodValue") != null) numberOne = details.First().GetPropertyValue<string>("prodValue");
 
-            if (cont.GetPropertyValue<int>("imageProduct") != 0)
+            if (details.Count() > 1)
             {
-                cardModel.Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("imageProduct")).Url;
+                if (details.Last().GetPropertyValue<string>("prodValue") != null) numberTwo = details.Last().GetPropertyValue<string>("prodValue");
             }
+            else
+            {
+                cardModel.Value = "Valor de mercado: R$" + numberOne;
+            }
+            cardModel.Value = "Valor variando entre R$" + numberOne + " e R$" + numberTwo;
 
+            if (cardModel.Name != null) cardModel.Name = cont.GetPropertyValue<string>("productsName");
+
+            if (cont.GetPropertyValue<string>("description") != null) cardModel.Description = cont.GetPropertyValue<string>("description");
+
+            if (cont.GetPropertyValue<int>("image") != 0) cardModel.Image = umbracoHelper.TypedMedia(cont.GetPropertyValue<int>("image")).Url;
+
+            if (cont.Url != null) cardModel.UrlProduct = cont.Id;
+
+            // if(numberOne!= null && numberTwo != null) { valores}
 
             return cardModel;
         }

@@ -1,15 +1,15 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Loja.Models
-
-
-<br>
-
+    <br>
+@{ 
+    var cont = Model.Content.Children;
+    List<IPublishedContent> ProductList = new List<IPublishedContent>();
+    List<string> CategoryList = new List<string>();
+    var umbracoPage = Umbraco.Content(cont);
+}
 <div class="row content-cards">
     @{
-        var cont = Model.Content.Children;
-        List<IPublishedContent> ProductList = new List<IPublishedContent>();
-        List<string> CategoryList = new List<string>();
-        var umbracoPage = Umbraco.Content(cont);
+
 
         foreach (var NodeCategories in cont)
         {
@@ -18,24 +18,13 @@
             {
                 var card = Loja.Util.Util.Card(Node);
 
-                if (card != null)
-                {
-                    if (card.Itens != null)
-                    {
-                        foreach (var cat in card.Itens.Categories)
-                        {
-                            CategoryList.Add(cat);
-                        }
-                    }
-                }
-
                 ProductList.Add(Node);
                 var name = card.Name;
-                var description = card.Description;
+                var description = @Html.Raw(card.Description);
                 var value = card.Value;
                 var imageProduct = card.Image;
-                
-                <a href=""> 
+
+                <a href="@Umbraco.NiceUrl(card.UrlProduct)"> 
                     <div class="col s3">
                         <div class="card">
                             <div class="card-image">

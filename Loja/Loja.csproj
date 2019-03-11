@@ -454,7 +454,6 @@
     <Content Include="Views\TrabalheConosco.cshtml" />
     <Content Include="Views\Partials\ContactUs.cshtml" />
     <Content Include="Views\Partials\ErrorView.cshtml" />
-    <Content Include="Views\Partials\LojaDetatlhe.cshtml" />
     <Content Include="Views\Partials\WorkWithUsP.cshtml" />
     <Content Include="Views\LojaDetatlhe.cshtml" />
     <Content Include="Views\Products\CardDescriptionClothes.cshtml" />
@@ -467,6 +466,7 @@
     <Content Include="Views\Partials\Error.cshtml" />
     <Content Include="Views\Partials\Success.cshtml" />
     <Content Include="Views\ProdutoDetalheCompras.cshtml" />
+    <Content Include="Views\ProdutoDetalhe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -486,10 +486,12 @@
     <Compile Include="Controller\ContactUsController.cs" />
     <Compile Include="Controller\HomeController.cs" />
     <Compile Include="Controller\MainController.cs" />
-    <Compile Include="Models\CardModel.cs" />
+    <Compile Include="Models\ProductModels.cs" />
+    <Compile Include="Models\CardStore.cs" />
     <Compile Include="Models\WorkWithUsModel.cs" />
     <Compile Include="Models\ContactUsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ClientUtil.cs" />
     <Compile Include="Util\Forms.cs" />
     <Compile Include="Util\MyStartupHandler.cs" />
     <Compile Include="Util\Util.cs" />
