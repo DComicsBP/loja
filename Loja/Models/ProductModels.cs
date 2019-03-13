@@ -12,7 +12,7 @@ namespace Loja.Models
         public string Description { get; set; }
         public string Value { get; set; }
         public string Image { get; set; }
-        public int UrlProduct{ get; set; }
+        public string UrlProduct{ get; set; }
         public string UrlCategories { get; set; }
         public ModelItensProduct Itens{ get; set; }
     }

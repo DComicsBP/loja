@@ -494,6 +494,7 @@
     <Compile Include="Util\ClientUtil.cs" />
     <Compile Include="Util\Forms.cs" />
     <Compile Include="Util\MyStartupHandler.cs" />
+    <Compile Include="Util\ProductUtil.cs" />
     <Compile Include="Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>

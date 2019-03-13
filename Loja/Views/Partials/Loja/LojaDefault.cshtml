@@ -7,34 +7,39 @@
     var title = model.GetPropertyValue<string>("title");
 
     <div class="row">
-
         <div class="container">
             <h4>@title</h4>
             <br />
-            @description
         </div>
     </div>
     var Page = Loja.Util.Util.FindParent(Model.Content);
 
+
     foreach (var item in Page.Children)
     {
-    <a href="@item.Url">
-        <div class="card">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="">
+        var imagem = "";
+        if (item.DocumentTypeAlias == "lojaVirtual")
+        {
+         imagem = item.GetPropertyValue<string>("");
+
+        }
+
+
+        <a href="@item.Url">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+                    <p><a href="#">This is a link</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                </div>
             </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-                <p><a href="#">This is a link</a></p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-                <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            </div>
-        </div>
-    </a>
+        </a>
 
     }
-
-
 }

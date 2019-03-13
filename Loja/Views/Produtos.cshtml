@@ -3,43 +3,5 @@
     Layout = "Master.cshtml";
 }
 
-@{
-
-var Page = Loja.Util.Util.FindParent(Model.Content);
-<div id="cards-type-store">
-
-    @{ 
-        var content = Model.Content;
-       // var teste02 = content.
-        var teste = "teste ";
-    }
-
-    @*@foreach(var type in Model.Content.GetProperty<IList<IPublishedContent>>())
-    {
-       
-    }*@
-
-    <div class="col s12 m7">
-        <h2 class="header">Horizontal Card</h2>
-        <div class="card horizontal">
-            <div class="card-image">
-                <img src="https://lorempixel.com/100/190/nature/6">
-            </div>
-            <div class="card-stacked">
-                <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.</p>
-                </div>
-                <div class="card-action">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-}
-<div class="row position-categories">
-    <div class="container">
-    </div>
-</div>
 @Html.Partial("Products/CardDescriptionClothes")
 @*Html.Partial("Products/CardCategories")*@

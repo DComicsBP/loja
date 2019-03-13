@@ -1,61 +1,10 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-@using Loja.Models
-    <br>
-@{ 
-    var cont = Model.Content.Children;
-    List<IPublishedContent> ProductList = new List<IPublishedContent>();
-    List<string> CategoryList = new List<string>();
-    var umbracoPage = Umbraco.Content(cont);
-}
+@using Loja.Models;
+@using Loja.Util;
+
 <div class="row content-cards">
-    @{
-
-
-        foreach (var NodeCategories in cont)
-        {
-            var getNode = NodeCategories;
-            foreach (var Node in NodeCategories.Children)
-            {
-                var card = Loja.Util.Util.Card(Node);
-
-                ProductList.Add(Node);
-                var name = card.Name;
-                var description = @Html.Raw(card.Description);
-                var value = card.Value;
-                var imageProduct = card.Image;
-
-                <a href="@Umbraco.NiceUrl(card.UrlProduct)"> 
-                    <div class="col s3">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="@imageProduct" width="20" height="310" />
-                            </div>
-                            <div class="card-content">
-                                <p>
-                                    <span class="card-title">@name</span>
-                                </p>
-                            </div>
-                            <div class="">
-
-                                <a>@description</a>
-                                <br />
-
-                                <span id="value">
-                                    @value
-                                </span>
-                            </div>
-                            <br />
-                            <br />
-                        </div>
-                    </div>
-                </a>
-            }
-        }
-    }
-
+    @Html.Raw(new ProductUtil().ListToCardProducts(new ProductUtil().ListProduct(Model.Content.Children.ToList()))));
 </div>
 
-
-<script src="~/Scripts/pages/cardDescriptionClothes.js">
-</script>
+<script src="~/Scripts/pages/cardDescriptionClothes.js"></script>
 

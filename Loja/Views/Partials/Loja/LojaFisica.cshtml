@@ -1,13 +1,9 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
-
+@using Loja.Util;
+@using Loja.Models;
 <div>
-    @{
-        var children = Model.Content.Children;
-
-        foreach(var child in children)
-        {
-            var titleCardStore = child.GetPropertyValue<string>("title"); 
-        }   
-
-    }
+    <div id="renderCardsStoreFisical">
+        @Html.Raw((new ClientUtil().RenderCardsFisicalList(new ClientUtil().MainCardsFisical(Model.Content))));
+    </div>
 </div>
+
